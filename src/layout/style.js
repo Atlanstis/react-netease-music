@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { $headerHeight, $headerBgColor } from "../style/variables";
+import { $headerHeight, $headerBgColor } from "@style/variables";
 
 export const Layoutwrapper = styled.div`
   height: 100%;
