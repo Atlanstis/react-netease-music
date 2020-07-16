@@ -72,7 +72,7 @@ export default Icon;
 
 const Backdrop = styled.span`
   display: inline-block;
-  ${flexCenter()};
+  ${flexCenter};
   border-radius: 50%;
 
   &:hover {

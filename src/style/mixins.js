@@ -1,16 +1,16 @@
-export const flexCenter = ($direction = "row") => {
-  return `
-    display: flex;
-    flex-direction: ${$direction};
-    align-items: center;
-    justify-content: center;
-  `;
-};
+import { css } from "styled-components";
 
-export const round = ($d) => {
-  return `
-    width: ${$d};
-    height: ${$d};
-    border-radius: 50%;
-  `;
-};
+export const flexCenter = css`
+  display: flex;
+  flex-direction: ${(props) => {
+    return props.direction || "row";
+  }};
+  align-items: center;
+  justify-content: center;
+`;
+
+export const round = css`
+  width: ${(props) => `${props.diam}px`};
+  height: ${(props) => `${props.diam}px`};
+  border-radius: 50%;
+`;

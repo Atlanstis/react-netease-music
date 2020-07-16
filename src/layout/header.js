@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import RouterHistory from "./components/routerHistory";
+import RouterHistory from "./components/router-history";
 import Search from "./components/search";
-import { HeaderWrapper, HeaderLeft, HeadeRight } from "./style";
+import { HeaderWrapper, HeaderLeft, HeadeRight, MacButton } from "./style";
 import Icon from "@/components/Icon";
 
 class Header extends Component {
@@ -10,15 +10,15 @@ class Header extends Component {
       <HeaderWrapper>
         <HeaderLeft>
           <div className="buttons">
-            <div className="mac-button red">
+            <MacButton className="mac-button red" diam="12">
               <Icon size={9} type="delete" />
-            </div>
-            <div className="mac-button yellow">
+            </MacButton>
+            <MacButton className="mac-button yellow" diam="12">
               <Icon size={9} type="minus" />
-            </div>
-            <div className="mac-button green">
+            </MacButton>
+            <MacButton className="mac-button green" diam="12">
               <Icon size={9} type="fullscreen" />
-            </div>
+            </MacButton>
           </div>
           <div className="history">
             <RouterHistory></RouterHistory>
