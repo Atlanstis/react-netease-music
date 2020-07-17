@@ -20,22 +20,3 @@
 >         "@": "${workspaceRoot}/src"
 >     }
 > ```
->
-> 3、在项目 package.json 所在同级目录下创建文件 jsconfig.json：
->
-> ```
-> {
->     "compilerOptions": {
->         "target": "ES6",
->         "module": "commonjs",
->         "allowSyntheticDefaultImports": true,
->         "baseUrl": "./",
->         "paths": {
->           "@/*": ["src/*"]
->         }
->     },
->     "exclude": [
->         "node_modules"
->     ]
-> }
-> ```
