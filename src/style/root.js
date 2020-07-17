@@ -6,4 +6,9 @@ export const Globalstyle = createGlobalStyle`
   height: 100%;
   background-color: ${$bodyBgColor};
   font-size: ${$fontSize};
-}`;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+`;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Icon from "@/components/Icon";
 import User from "./components/user";
@@ -9,6 +10,7 @@ import {
   $menuItemHoverBg,
   $fontSizeMediumSm,
   $menuFontColor,
+  $themeColor,
 } from "@/style/variables";
 import { textEllipsis } from "@/style/mixins";
 
@@ -20,12 +22,18 @@ class Menu extends Component {
         <Menus>
           <MenuBlock>
             <p className="menu-block-title">我的音乐</p>
-            <div>
-              <MenuItem>
-                <Icon size={16} type="discovery" class="iconfont" />
-                <span className="menu-title">发现音乐</span>
-              </MenuItem>
-            </div>
+            <MenuList>
+              <NavLink
+                className="nav-link"
+                to="/home"
+                activeClassName="menu-item-active"
+              >
+                <MenuItem>
+                  <Icon size={16} type="discovery" className="iconfont" />
+                  <span className="menu-title">发现音乐</span>
+                </MenuItem>
+              </NavLink>
+            </MenuList>
           </MenuBlock>
         </Menus>
       </MenuWrapper>
@@ -49,6 +57,16 @@ const MenuBlock = styled.div`
     color: ${$fontColorGrey2};
     padding-left: 16px;
     margin-bottom: 8px;
+  }
+`;
+
+const MenuList = styled.div`
+  .menu-item-active {
+    color: ${$themeColor};
+    .menu-title,
+    .iconfont {
+      color: ${$themeColor};
+    }
   }
 `;
 

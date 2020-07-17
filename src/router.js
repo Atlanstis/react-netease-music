@@ -26,9 +26,10 @@ const AppRouter = () => (
         <LayoutContent>
           <div className="router-view-center">
             <Switch>
+              <Redirect exact from="/" to="/home/discovery" />
+              <Redirect exact from="/home" to="/home/discovery" />
               <Route path="/home/discovery" component={Discovery} />
               <Route path="/home/song-sheet" component={SongSheet} />
-              <Redirect to="/home/discovery" />
             </Switch>
           </div>
         </LayoutContent>
