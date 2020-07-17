@@ -1,16 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-class Home extends Component {
-  render() {
-    return <div>首页</div>;
-  }
-}
+import Discovery from "./discovery";
+import SongSheet from "./song-sheet";
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export { Discovery, SongSheet };

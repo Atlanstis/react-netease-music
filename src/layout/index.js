@@ -1,12 +1,24 @@
 import React, { Component } from "react";
-import { Layoutwrapper } from "./style";
-import Header from "./header";
+import { Layoutwrapper, LayoutBody, LayoutContent, LayoutMenu } from "./style";
+import LayoutHeader from "./header";
+import Menu from "./components/menu";
+import AppRouter from "@/router";
 
 class Layout extends Component {
   render() {
     return (
       <Layoutwrapper>
-        <Header></Header>
+        <LayoutHeader></LayoutHeader>
+        <LayoutBody>
+          <LayoutMenu>
+            <Menu></Menu>
+          </LayoutMenu>
+          <LayoutContent>
+            <div className="router-view-center">
+              <AppRouter></AppRouter>
+            </div>
+          </LayoutContent>
+        </LayoutBody>
       </Layoutwrapper>
     );
   }

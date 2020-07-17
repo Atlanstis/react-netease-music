@@ -13,3 +13,18 @@ export const $roundHoverBgcolor = "#EBEBEB";
 
 export const $white = "#FFFFFF";
 export const $black = "#000000";
+
+export const $bodyBgColor = "#fff";
+export const $fontSize = "14px;";
+
+// mini-player
+export const $miniPlayerHeight = "60px";
+export const $miniPlayerZIndex = "1002";
+
+// layout-conetent
+export const $layoutContentMinWidth = "700px";
+// content
+export const $centerContentMaxWidth = "1000px";
+
+// menu
+export const $menuBgColor = "#ededed";
