@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
-import Layout from "./layout";
+import Router from "./router";
 import { Globalstyle } from "./style/root";
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Globalstyle></Globalstyle>
-        <Layout></Layout>
+        <Router></Router>
       </Provider>
     );
   }

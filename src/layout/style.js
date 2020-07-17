@@ -20,8 +20,8 @@ export const LayoutBody = styled.div`
   height: calc(100% - ${$headerHeight});
 `;
 
-// 菜单栏
-export const LayoutMenu = styled.div`
+// 侧边栏
+export const LayoutSider = styled.div`
   height: calc(100% - ${$miniPlayerHeight});
 `;
 
@@ -52,8 +52,10 @@ export const HeaderWrapper = styled.div`
 `;
 // 顶部栏左侧
 export const HeaderLeft = styled.div`
-  padding: 14px 14px 0 8px;
+  width: 250px;
+  padding: 14px 8px 0;
   display: flex;
+  justify-content: space-between;
 
   .buttons {
     display: flex;
@@ -63,9 +65,6 @@ export const HeaderLeft = styled.div`
         opacity: 1;
       }
     }
-  }
-  .history {
-    margin-left: 65px;
   }
 `;
 // 顶部栏左侧按钮

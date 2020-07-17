@@ -14,3 +14,9 @@ export const round = css`
   height: ${(props) => `${props.diam}px`};
   border-radius: 50%;
 `;
+
+export const textEllipsis = css`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;

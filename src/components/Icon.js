@@ -10,7 +10,7 @@ import {
 import { flexCenter } from "@/style/mixins";
 
 function Icon(props) {
-  let { type, color, size, backdrop } = props;
+  let { type, color, size, backdrop, border } = props;
   const getIconCls = () => {
     let cls = `icon-${type}`;
     if (color) {
@@ -50,6 +50,13 @@ function Icon(props) {
       </Backdrop>
     );
   }
+  if (border) {
+    return (
+      <Border style={{ width: `${size}px`, height: `${size}px` }}>
+        {Icon}
+      </Border>
+    );
+  }
   return Icon;
 }
 
@@ -59,6 +66,7 @@ Icon.propTypes = {
   type: PropTypes.string.isRequired,
   backdrop: PropTypes.bool,
   onClick: PropTypes.func,
+  border: PropTypes.bool,
 };
 
 Icon.defaultProps = {
@@ -66,9 +74,20 @@ Icon.defaultProps = {
   color: "",
   backdrop: false,
   onClick: () => {},
+  border: false,
 };
 
 export default Icon;
+
+const Border = styled.span`
+  display: inline-block;
+  ${flexCenter};
+  background: #e0e0e0;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #d5d5d5;
+`;
 
 const Backdrop = styled.span`
   display: inline-block;

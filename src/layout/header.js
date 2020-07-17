@@ -20,9 +20,7 @@ class Header extends Component {
               <Icon size={9} type="fullscreen" />
             </MacButton>
           </div>
-          <div className="history">
-            <RouterHistory></RouterHistory>
-          </div>
+          <RouterHistory></RouterHistory>
         </HeaderLeft>
         <HeadeRight>
           <div className="search-wrap">

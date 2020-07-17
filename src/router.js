@@ -5,15 +5,35 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+import {
+  Layoutwrapper,
+  LayoutBody,
+  LayoutContent,
+  LayoutSider,
+  LayoutHeader,
+  LayoutMenu,
+} from "@/layout";
 import { Discovery, SongSheet } from "@/views/home";
 
 const AppRouter = () => (
   <Router>
-    <Switch>
-      <Route path="/home/discovery" component={Discovery} />
-      <Route path="/home/song-sheet" component={SongSheet} />
-      <Redirect to="/home/discovery" />
-    </Switch>
+    <Layoutwrapper>
+      <LayoutHeader></LayoutHeader>
+      <LayoutBody>
+        <LayoutSider>
+          <LayoutMenu></LayoutMenu>
+        </LayoutSider>
+        <LayoutContent>
+          <div className="router-view-center">
+            <Switch>
+              <Route path="/home/discovery" component={Discovery} />
+              <Route path="/home/song-sheet" component={SongSheet} />
+              <Redirect to="/home/discovery" />
+            </Switch>
+          </div>
+        </LayoutContent>
+      </LayoutBody>
+    </Layoutwrapper>
   </Router>
 );
 
