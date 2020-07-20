@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Icon from "@/components/Icon";
+import Icon from "@/components/icon";
 
 class User extends Component {
   constructor(props) {

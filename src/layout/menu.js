@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import Icon from "@/components/Icon";
+import Icon from "@/components/icon";
 import User from "./components/user";
 import {
   $menuBgColor,

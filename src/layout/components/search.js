@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { $headerInputColor, $headerInputBgColor } from "@/style/variables";
-import Icon from "@/components/Icon";
+import Icon from "@/components/icon";
 
 class Search extends Component {
   render() {

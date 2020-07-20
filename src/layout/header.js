@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import RouterHistory from "./components/router-history";
 import Search from "./components/search";
 import { HeaderWrapper, HeaderLeft, HeadeRight, MacButton } from "./style";
-import Icon from "@/components/Icon";
+import Icon from "@/components/icon";
 
 class Header extends Component {
   render() {
