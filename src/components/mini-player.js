@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Icon from "@/components/icon";
+import Volume from "@/components/volume";
+import ProgreesBar from "@/components/progress-bar";
 import {
   $miniPlayerZIndex,
   $miniPlayerHeight,
@@ -59,7 +61,13 @@ class MiniPlayer extends Component {
           <Icon size={24} type="next"></Icon>
         </ControlWrapper>
         {/* 右侧按钮区 */}
-        <ButtonAreaWrapper></ButtonAreaWrapper>
+        <ButtonAreaWrapper>
+          <Volume></Volume>
+        </ButtonAreaWrapper>
+        {/* 音乐播放进度条 */}
+        <ProgressBarWrpper>
+          <ProgreesBar></ProgreesBar>
+        </ProgressBarWrpper>
       </MiniPlayerWrapper>
     );
   }
@@ -123,4 +131,15 @@ const ControlPlayIcon = styled.div`
   }
 `;
 
-const ButtonAreaWrapper = styled.div``;
+const ButtonAreaWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const ProgressBarWrpper = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+`;

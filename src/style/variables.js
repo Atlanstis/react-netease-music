@@ -34,3 +34,5 @@ export const $centerContentMaxWidth = "1000px";
 export const $menuBgColor = "#ededed";
 export const $menuItemHoverBg = "#e7e7e7";
 export const $menuFontColor = "#2f2f2f";
+
+export const $progressBgColor = "#f5f5f5";
