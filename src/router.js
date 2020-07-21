@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
+import MiniPlayer from "@/components/mini-player";
 import {
   Layoutwrapper,
   LayoutBody,
@@ -35,6 +36,7 @@ const AppRouter = () => (
         </LayoutContent>
       </LayoutBody>
     </Layoutwrapper>
+    <MiniPlayer></MiniPlayer>
   </Router>
 );
 

@@ -10,11 +10,20 @@ import {
 import { flexCenter } from "@/style/mixins";
 
 function Icon(props) {
-  let { type, color, size, backdrop, border } = props;
+  let { type, color, size, backdrop, border, iconClass } = props;
   const getIconCls = () => {
     let cls = `icon-${type}`;
     if (color) {
       cls += ` icon-color-${color}`;
+    }
+    if (iconClass) {
+      if (Array.isArray(iconClass)) {
+        cls += iconClass.reduce((prev, curr) => {
+          return ` ${prev} ${curr}`;
+        });
+      } else {
+        cls += ` ${iconClass}`;
+      }
     }
     return cls;
   };
@@ -61,12 +70,16 @@ function Icon(props) {
 }
 
 Icon.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   color: PropTypes.string,
   type: PropTypes.string.isRequired,
   backdrop: PropTypes.bool,
   onClick: PropTypes.func,
   border: PropTypes.bool,
+  iconClass: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
 };
 
 Icon.defaultProps = {
@@ -75,6 +88,7 @@ Icon.defaultProps = {
   backdrop: false,
   onClick: () => {},
   border: false,
+  iconClass: "",
 };
 
 export default Icon;

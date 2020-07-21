@@ -20,13 +20,11 @@ class RouterHistory extends Component {
     return (
       <RouterHistoryWrapper>
         <Icon
-          className="icon"
           backdrop={true}
           type="arrow-left"
           onClick={this.routerBack}
         ></Icon>
         <Icon
-          className="icon"
           backdrop={true}
           type="arrow-right"
           onClick={this.routerForward}
@@ -41,8 +39,4 @@ export default RouterHistory;
 const RouterHistoryWrapper = styled.div`
   display: flex;
   align-items: center;
-
-  .icon {
-    margin-right: 16px;
-  }
 `;

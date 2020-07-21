@@ -29,7 +29,7 @@ class Menu extends Component {
                 activeClassName="menu-item-active"
               >
                 <MenuItem>
-                  <Icon size={16} type="discovery" className="iconfont" />
+                  <Icon size={16} type="discovery" />
                   <span className="menu-title">发现音乐</span>
                 </MenuItem>
               </NavLink>
