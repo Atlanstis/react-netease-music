@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Icon from "@/components/icon";
-import Volume from "@/components/volume";
 import ProgreesBar from "@/components/progress-bar";
+import Volume from "./components/volume";
+import PlayMode from "./components/play-mode";
 import {
   $miniPlayerZIndex,
   $miniPlayerHeight,
   $bodyBgColor,
   $themeColor,
+  $miniPlayerIconColor,
 } from "@/style/variables";
 import { flexCenter } from "@/style/mixins";
 
@@ -48,7 +50,7 @@ class MiniPlayer extends Component {
         <ControlWrapper>
           {/* 喜欢按钮 */}
           <Icon
-            size="22"
+            size="24"
             type={favor ? "favor" : "unfavor"}
             iconClass={favor ? ["favor", "left"] : "left"}
             onClick={this.togglefFavor}
@@ -62,6 +64,11 @@ class MiniPlayer extends Component {
         </ControlWrapper>
         {/* 右侧按钮区 */}
         <ButtonAreaWrapper>
+          {/* 播放模式 */}
+          <PlayMode></PlayMode>
+          {/* 查看播放列表 */}
+          <Icon size={24} type="playlist" iconClass="icon"></Icon>
+          {/* 音量控制条 */}
           <Volume></Volume>
         </ButtonAreaWrapper>
         {/* 音乐播放进度条 */}
@@ -76,7 +83,6 @@ class MiniPlayer extends Component {
 export default MiniPlayer;
 
 const MiniPlayerWrapper = styled.div`
-  position: relative;
   position: fixed;
   z-index: ${$miniPlayerZIndex};
   bottom: 0;
@@ -108,7 +114,7 @@ const ControlWrapper = styled.div`
     color: ${$themeColor};
   }
   .unfavor {
-    color: #4c4c4c;
+    color: ${$miniPlayerIconColor};
   }
   .left {
     position: absolute;
@@ -135,6 +141,11 @@ const ButtonAreaWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  .icon {
+    color: ${$miniPlayerIconColor};
+    margin-left: 12px;
+  }
 `;
 
 const ProgressBarWrpper = styled.div`

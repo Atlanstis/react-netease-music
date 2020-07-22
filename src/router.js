@@ -5,7 +5,6 @@ import {
   Switch,
   Redirect,
 } from "react-router-dom";
-import MiniPlayer from "@/components/mini-player";
 import {
   Layoutwrapper,
   LayoutBody,
@@ -13,6 +12,7 @@ import {
   LayoutSider,
   LayoutHeader,
   LayoutMenu,
+  MiniPlayer,
 } from "@/layout";
 import { Discovery, SongSheet } from "@/views/home";
 

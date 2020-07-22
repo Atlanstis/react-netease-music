@@ -24,6 +24,7 @@ export const $fontSize = "14px;";
 // mini-player
 export const $miniPlayerHeight = "60px";
 export const $miniPlayerZIndex = "1002";
+export const $miniPlayerIconColor = "#4c4c4c";
 
 // layout-conetent
 export const $layoutContentMinWidth = "700px";

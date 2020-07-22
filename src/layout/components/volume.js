@@ -11,9 +11,11 @@ class Volume extends Component {
     this.state = {
       mouseIn: false,
       volume: 0,
+      volumeBak: 0,
     };
     this.handleMouseStatus = this.handleMouseStatus.bind(this);
     this.progressClick = this.progressClick.bind(this);
+    this.toggleVolume = this.toggleVolume.bind(this);
   }
 
   handleMouseStatus(flag) {
@@ -41,6 +43,24 @@ class Volume extends Component {
     });
   }
 
+  toggleVolume() {
+    const { volume } = this.state;
+    if (volume === 0) {
+      this.setState((state) => {
+        return {
+          volume: state.volumeBak,
+        };
+      });
+    } else {
+      this.setState((state) => {
+        return {
+          volumeBak: state.volume,
+          volume: 0,
+        };
+      });
+    }
+  }
+
   render() {
     let { mouseIn, volume } = this.state;
     let transformBak = transform.charAt(0).toUpperCase() + transform.substr(1);
@@ -53,7 +73,12 @@ class Volume extends Component {
           this.handleMouseStatus(false);
         }}
       >
-        <Icon type="volume-open" size={24}></Icon>
+        <Icon
+          type={volume > 0 ? "volume-open" : "volume-mute"}
+          size={24}
+          iconClass="icon"
+          onClick={this.toggleVolume}
+        ></Icon>
         {mouseIn ? (
           <VolumeBar>
             <VolumeProgressBar
@@ -63,19 +88,11 @@ class Volume extends Component {
               }}
             >
               <BarInner>
-                <Progress
-                  style={{ height: `${volume}px` }}
-                  ref={($progress) => {
-                    this.$progress = $progress;
-                  }}
-                ></Progress>
+                <Progress style={{ height: `${volume}px` }}></Progress>
                 <ProgressBtnWrapper>
                   <ProgressBtn
                     style={{
                       [transformBak]: `translate3d(0, -${volume}px, 0)`,
-                    }}
-                    ref={($progressBtn) => {
-                      this.$progressBtn = $progressBtn;
                     }}
                   ></ProgressBtn>
                 </ProgressBtnWrapper>
