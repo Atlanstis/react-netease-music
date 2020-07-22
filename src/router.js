@@ -14,7 +14,12 @@ import {
   LayoutMenu,
   MiniPlayer,
 } from "@/layout";
-import { Discovery, SongSheet } from "@/views/home";
+import RouterConfig from "@/config/router";
+
+let RouterList = [];
+Object.keys(RouterConfig).forEach((key) => {
+  RouterList = RouterList.concat(...RouterConfig[key]);
+});
 
 const AppRouter = () => (
   <Router>
@@ -29,8 +34,15 @@ const AppRouter = () => (
             <Switch>
               <Redirect exact from="/" to="/home/discovery" />
               <Redirect exact from="/home" to="/home/discovery" />
-              <Route path="/home/discovery" component={Discovery} />
-              <Route path="/home/song-sheet" component={SongSheet} />
+              {RouterList.map((item) => {
+                return (
+                  <Route
+                    key={item.path}
+                    path={item.path}
+                    component={item.component}
+                  ></Route>
+                );
+              })}
             </Switch>
           </div>
         </LayoutContent>

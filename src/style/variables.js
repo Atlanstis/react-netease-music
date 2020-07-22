@@ -1,3 +1,6 @@
+export const $white = "#FFFFFF";
+export const $black = "#000000";
+
 export const $headerBgColor = "#F9F9F9";
 export const $headerFontColor = "#4a4a4a";
 export const $headerInputColor = "#4a4a4a";
@@ -12,11 +15,10 @@ export const $fontColorGrey = "#5c5c5c";
 export const $fontColorGrey2 = "#909090";
 export const $fontColorTitle = "#333333";
 export const $fontColorPrimary = "#b2b2b2";
+export const $fontColorMenu = $black;
+export const $fontColorMenuUnactive = "#646464";
 
 export const $roundHoverBgcolor = "#EBEBEB";
-
-export const $white = "#FFFFFF";
-export const $black = "#000000";
 
 export const $bodyBgColor = "#fff";
 
@@ -24,6 +26,7 @@ export const $fontSizeXs = "10px";
 export const $fontSizeSm = "12px";
 export const $fontSizeMediumSm = "13px";
 export const $fontSize = "14px;";
+export const $fontSizeL = "16px";
 
 // mini-player
 export const $miniPlayerHeight = "60px";

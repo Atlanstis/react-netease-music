@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { NavLink, withRouter } from "react-router-dom";
 import RouterHistory from "./components/router-history";
 import Search from "./components/search";
 import Icon from "@/components/icon";
@@ -9,10 +10,20 @@ import {
   $headerFontColor,
   $black,
   $fontWeightBold,
+  $fontSizeL,
+  $fontColorMenu,
+  $fontColorMenuUnactive,
 } from "@/style/variables";
 import { flexCenter, round } from "@/style/mixins";
+import RouterConfig from "@/config/router";
 
 class Header extends Component {
+  getHeaderMenus() {
+    const { pathname } = this.props.location;
+    const pathKey = pathname.replace(/(\/.*?)\/.*/, "$1").substring(1);
+    return RouterConfig[pathKey] || [];
+  }
+
   render() {
     return (
       <HeaderWrapper>
@@ -30,6 +41,20 @@ class Header extends Component {
           </div>
           <RouterHistory></RouterHistory>
         </HeaderLeft>
+        <HeaderMenus>
+          {this.getHeaderMenus().map((link) => {
+            return (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className="nav-link header-menu"
+                activeClassName="menu-item-active"
+              >
+                {link.name}
+              </NavLink>
+            );
+          })}
+        </HeaderMenus>
         <HeadeRight>
           <div className="search-wrap">
             <Search></Search>
@@ -40,7 +65,7 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
 
 // 顶部栏
 const HeaderWrapper = styled.div`
@@ -100,6 +125,29 @@ const MacButton = styled.div`
     }
   }
 `;
+
+// 顶部栏菜单
+const HeaderMenus = styled.div`
+  flex: 1;
+  margin: 0 40px;
+  display: flex;
+  align-items: center;
+
+  .header-menu {
+    color: ${$fontColorMenuUnactive};
+    font-size: ${$fontSizeL};
+    cursor: pointer;
+
+    &:hover,
+    &.menu-item-active {
+      color: ${$fontColorMenu};
+    }
+  }
+  .header-menu + .header-menu {
+    margin-left: 24px;
+  }
+`;
+
 // 顶部栏右侧
 const HeadeRight = styled.div`
   display: flex;
