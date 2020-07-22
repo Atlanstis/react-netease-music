@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import Icon from "@/components/icon";
 
 const playModeMap = {
+  cardiac: {
+    code: "cardiac",
+    icon: "cardiac",
+    name: "心动模式",
+  },
   sequence: {
     code: "sequence",
     icon: "sequence",
@@ -23,7 +28,7 @@ class PlayMode extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playMode: "sequence",
+      playMode: "cardiac",
     };
     this.onChangePlayMode = this.onChangePlayMode.bind(this);
   }
