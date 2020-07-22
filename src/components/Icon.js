@@ -119,7 +119,7 @@ const Backdrop = styled.span`
 const IconItem = styled.i`
   cursor: ${(props) => (props.hover ? "pointer" : "default")};
 
-  .icon-color {
+  &.icon-color {
     &-theme {
       color: ${$themeColor};
     }

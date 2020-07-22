@@ -8,7 +8,10 @@ export const $themeColor = "#D33A31";
 
 export const $fontWeightBold = "700";
 export const $fontColorShallow = "#6f6f6f";
+export const $fontColorGrey = "#5c5c5c";
 export const $fontColorGrey2 = "#909090";
+export const $fontColorTitle = "#333333";
+export const $fontColorPrimary = "#b2b2b2";
 
 export const $roundHoverBgcolor = "#EBEBEB";
 
@@ -17,6 +20,7 @@ export const $black = "#000000";
 
 export const $bodyBgColor = "#fff";
 
+export const $fontSizeXs = "10px";
 export const $fontSizeSm = "12px";
 export const $fontSizeMediumSm = "13px";
 export const $fontSize = "14px;";

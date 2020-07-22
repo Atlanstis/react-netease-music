@@ -4,6 +4,7 @@ import Icon from "@/components/icon";
 import ProgreesBar from "@/components/progress-bar";
 import Volume from "./components/volume";
 import PlayMode from "./components/play-mode";
+import Song from "./components/song";
 import {
   $miniPlayerZIndex,
   $miniPlayerHeight,
@@ -45,7 +46,7 @@ class MiniPlayer extends Component {
     return (
       <MiniPlayerWrapper>
         {/* 左侧歌曲 */}
-        <SongWrapper></SongWrapper>
+        <Song></Song>
         {/* 控制台 */}
         <ControlWrapper>
           {/* 喜欢按钮 */}
@@ -96,8 +97,6 @@ const MiniPlayerWrapper = styled.div`
   background: ${$bodyBgColor};
 `;
 
-const SongWrapper = styled.div``;
-
 const ControlWrapper = styled.div`
   position: absolute;
   height: 100%;
@@ -144,7 +143,7 @@ const ButtonAreaWrapper = styled.div`
 
   .icon {
     color: ${$miniPlayerIconColor};
-    margin-left: 12px;
+    margin-left: 16px;
   }
 `;
 
