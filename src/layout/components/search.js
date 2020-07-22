@@ -10,7 +10,7 @@ class Search extends Component {
         <SearchInput>
           <SearchInputInner></SearchInputInner>
           <SearchInputPrefix>
-            <Icon size={14} type="search"></Icon>
+            <Icon size={14} type="search" hover={false}></Icon>
           </SearchInputPrefix>
         </SearchInput>
       </SearchWrapper>

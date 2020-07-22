@@ -10,7 +10,7 @@ import {
 import { flexCenter } from "@/style/mixins";
 
 function Icon(props) {
-  let { type, color, size, backdrop, border, iconClass } = props;
+  let { type, color, size, backdrop, border, iconClass, hover } = props;
   const getIconCls = () => {
     let cls = `icon-${type}`;
     if (color) {
@@ -43,6 +43,7 @@ function Icon(props) {
       onClick={() => {
         props.onClick();
       }}
+      hover={hover}
       className={`iconfont ${getIconCls()}`}
       style={getIconStyle()}
     />
@@ -80,6 +81,7 @@ Icon.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
   ]),
+  hover: PropTypes.bool,
 };
 
 Icon.defaultProps = {
@@ -89,6 +91,7 @@ Icon.defaultProps = {
   onClick: () => {},
   border: false,
   iconClass: "",
+  hover: true,
 };
 
 export default Icon;
@@ -114,7 +117,7 @@ const Backdrop = styled.span`
 `;
 
 const IconItem = styled.i`
-  cursor: pointer;
+  cursor: ${(props) => (props.hover ? "pointer" : "default")};
 
   .icon-color {
     &-theme {
