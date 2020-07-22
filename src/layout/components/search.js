@@ -42,7 +42,7 @@ const SearchInputInner = styled.input.attrs({
   border: none;
   color: ${$headerInputColor};
   -webkit-appearance: none;
-  border-radius: 4px;
+  border-radius: 12px;
   box-sizing: border-box;
   display: inline-block;
   font-size: inherit;
@@ -54,7 +54,7 @@ const SearchInputInner = styled.input.attrs({
 
 const SearchInputPrefix = styled.span`
   position: absolute;
-  left: 5px;
+  left: 8px;
   top: 5px;
   text-align: center;
   height: 100%;
