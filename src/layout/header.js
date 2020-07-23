@@ -21,7 +21,8 @@ class Header extends Component {
   getHeaderMenus() {
     const { pathname } = this.props.location;
     const pathKey = pathname.replace(/(\/.*?)\/.*/, "$1").substring(1);
-    return RouterConfig[pathKey] || [];
+    let routers = RouterConfig[pathKey];
+    return Array.isArray(routers) ? routers : [];
   }
 
   render() {

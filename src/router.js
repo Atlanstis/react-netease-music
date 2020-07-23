@@ -17,8 +17,18 @@ import {
 import RouterConfig from "@/config/router";
 
 let RouterList = [];
+let RedirectList = [];
 Object.keys(RouterConfig).forEach((key) => {
-  RouterList = RouterList.concat(...RouterConfig[key]);
+  let routers = RouterConfig[key];
+  if (Array.isArray(routers) && routers.length > 0) {
+    RedirectList.push({
+      from: `/${key}`,
+      to: routers[0].path,
+    });
+    RouterList = RouterList.concat(...routers);
+  } else {
+    RouterList = RouterList.concat(routers);
+  }
 });
 
 const AppRouter = () => (
@@ -33,13 +43,22 @@ const AppRouter = () => (
           <div className="router-view-center">
             <Switch>
               <Redirect exact from="/" to="/home/discovery" />
-              <Redirect exact from="/home" to="/home/discovery" />
-              {RouterList.map((item) => {
+              {RedirectList.map((redirect) => {
+                return (
+                  <Redirect
+                    exact
+                    key={redirect.from}
+                    from={redirect.from}
+                    to={redirect.to}
+                  ></Redirect>
+                );
+              })}
+              {RouterList.map((router) => {
                 return (
                   <Route
-                    key={item.path}
-                    path={item.path}
-                    component={item.component}
+                    key={router.path}
+                    path={router.path}
+                    component={router.component}
                   ></Route>
                 );
               })}
