@@ -42,7 +42,7 @@ const AppRouter = () => (
         <LayoutContent>
           <div className="router-view-center">
             <Switch>
-              <Redirect exact from="/" to="/home/discovery" />
+              <Redirect exact from="/" to="/home" />
               {RedirectList.map((redirect) => {
                 return (
                   <Redirect

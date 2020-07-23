@@ -1,5 +1,5 @@
 import {
-  Discovery,
+  Recommend,
   SongSheet,
   LatestMusic,
   RadioStation,
@@ -9,7 +9,7 @@ import {
 import { Video, Mv } from "@/views/video";
 import { Trends } from "@/views/friend";
 import FM from "@/views/fm";
-const HOME_PREFIX = "home";
+export const HOME_PREFIX = "home";
 const VIEDO_PREFIX = "video";
 const FRIEND_PREFIX = "friend";
 const FM_PREFIX = "fm";
@@ -17,9 +17,9 @@ const FM_PREFIX = "fm";
 export default {
   [HOME_PREFIX]: [
     {
-      path: `/${HOME_PREFIX}/discovery`,
+      path: `/${HOME_PREFIX}/recommend`,
       name: "个性推荐",
-      component: Discovery,
+      component: Recommend,
     },
     {
       path: `/${HOME_PREFIX}/song-sheet`,

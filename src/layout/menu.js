@@ -17,7 +17,7 @@ import { textEllipsis } from "@/style/mixins";
 let menus = [
   {
     title: "我的音乐",
-    icon: "discovery",
+    icon: "music",
     path: "/home",
   },
   {
