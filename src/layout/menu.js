@@ -14,6 +14,28 @@ import {
 } from "@/style/variables";
 import { textEllipsis } from "@/style/mixins";
 
+let menus = [
+  {
+    title: "我的音乐",
+    icon: "discovery",
+    path: "/home",
+  },
+  {
+    title: "私人FM",
+    icon: "fm",
+    path: "/fm",
+  },
+  {
+    title: "视频",
+    icon: "video",
+    path: "/video",
+  },
+  {
+    title: "朋友",
+    icon: "friend",
+    path: "/friend",
+  },
+];
 class Menu extends Component {
   render() {
     return (
@@ -22,48 +44,22 @@ class Menu extends Component {
         <Menus>
           <MenuBlock>
             <p className="menu-block-title">我的音乐</p>
-            <MenuList>
-              <NavLink
-                className="nav-link"
-                to="/home"
-                activeClassName="menu-item-active"
-              >
-                <MenuItem>
-                  <Icon size={16} type="discovery" />
-                  <span className="menu-title">发现音乐</span>
-                </MenuItem>
-              </NavLink>
-              <NavLink
-                className="nav-link"
-                to="/fm"
-                activeClassName="menu-item-active"
-              >
-                <MenuItem>
-                  <Icon size={16} type="discovery" />
-                  <span className="menu-title">私人FM</span>
-                </MenuItem>
-              </NavLink>
-              <NavLink
-                className="nav-link"
-                to="/video"
-                activeClassName="menu-item-active"
-              >
-                <MenuItem>
-                  <Icon size={16} type="discovery" />
-                  <span className="menu-title">视频</span>
-                </MenuItem>
-              </NavLink>
-              <NavLink
-                className="nav-link"
-                to="/friend"
-                activeClassName="menu-item-active"
-              >
-                <MenuItem>
-                  <Icon size={16} type="discovery" />
-                  <span className="menu-title">朋友</span>
-                </MenuItem>
-              </NavLink>
-            </MenuList>
+            {menus.map((menu) => {
+              return (
+                <MenuList key={menu.path}>
+                  <NavLink
+                    className="nav-link"
+                    to={menu.path}
+                    activeClassName="menu-item-active"
+                  >
+                    <MenuItem>
+                      <Icon size={18} type={menu.icon} />
+                      <span className="menu-title">{menu.title}</span>
+                    </MenuItem>
+                  </NavLink>
+                </MenuList>
+              );
+            })}
           </MenuBlock>
         </Menus>
       </MenuWrapper>
