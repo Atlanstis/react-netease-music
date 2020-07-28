@@ -20,7 +20,6 @@ module.exports = override(
   // 配置别名
   addWebpackAlias({
     "@": resolve("src"),
-    "@style": resolve("src/style"),
   }),
   // antd 定制主题：https://ant.design/docs/react/customize-theme-cn
   addLessLoader({

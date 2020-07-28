@@ -14,7 +14,7 @@ import {
   LayoutMenu,
   MiniPlayer,
 } from "@/layout";
-import RouterConfig from "@/config/router";
+import RouterConfig, { HOME_PREFIX } from "@/config/router";
 
 let RouterList = [];
 let RedirectList = [];
@@ -42,7 +42,7 @@ const AppRouter = () => (
         <LayoutContent>
           <div className="router-view-center">
             <Switch>
-              <Redirect exact from="/" to="/home" />
+              <Redirect exact from="/" to={`/${HOME_PREFIX}`} />
               {RedirectList.map((redirect) => {
                 return (
                   <Redirect

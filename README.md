@@ -23,7 +23,7 @@
 
 ### 依赖说明
 
-- antd: React UI 框架（[Ant Design 官方文档](https://ant.design/index-cn)）
+- antd: React UI 框架（[Ant Design 官方文档](https://ant-design.gitee.io/index-cn)）
 - axios: 易用、简洁且高效的 http 库
 - babel-plugin-import: 对 antd 等库进行按需加载
 - less: CSS 预处理语言
@@ -39,3 +39,4 @@
 - styled-components: css in js（[styled-components 官方文档](https://styled-components.com/docs)）
 - customize-cra, react-app-rewired: 覆盖项目默认配置
 - resize-observer-polyfill: ResizeObserver 支持
+- classnames: 动态绑定 className

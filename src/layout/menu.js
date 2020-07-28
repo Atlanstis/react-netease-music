@@ -52,7 +52,7 @@ class Menu extends Component {
                     to={menu.path}
                     activeClassName="menu-item-active"
                   >
-                    <MenuItem>
+                    <MenuItem className="menu">
                       <Icon size={18} type={menu.icon} />
                       <span className="menu-title">{menu.title}</span>
                     </MenuItem>
@@ -89,6 +89,9 @@ const MenuBlock = styled.div`
 const MenuList = styled.div`
   .menu-item-active {
     color: ${$themeColor};
+    .menu {
+      background: ${$menuItemHoverBg};
+    }
     .menu-title,
     .iconfont {
       color: ${$themeColor};
