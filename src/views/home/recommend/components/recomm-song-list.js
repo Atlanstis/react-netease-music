@@ -10,7 +10,7 @@ import PlayIcon from "@/components/play-icon";
 function RecommSongList(props) {
   return props.list.size ? (
     <div>
-      <Title>推荐歌曲</Title>
+      <Title>推荐歌单</Title>
       <ListWrapper>
         {props.list.map((card) => {
           return (

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { actionCreator } from "./store";
-import { Banner, RecommSongList } from "./components";
+import { Banner, RecommSongList, LatestSongs } from "./components";
 class Recommend extends Component {
   componentDidMount() {
     this.props.getRecommendData();
@@ -13,6 +13,7 @@ class Recommend extends Component {
       <RecommpendWrapper>
         <Banner />
         <RecommSongList />
+        <LatestSongs />
       </RecommpendWrapper>
     );
   }
@@ -27,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     getRecommendData() {
       dispatch(actionCreator.getBannerAction());
       dispatch(actionCreator.getRecommSongListAction());
+      dispatch(actionCreator.getLatestSongsAction());
     },
   };
 };

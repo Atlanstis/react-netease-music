@@ -19,6 +19,7 @@ export const $fontColorMenu = $black;
 export const $fontColorMenuUnactive = "#646464";
 
 export const $roundHoverBgcolor = "#EBEBEB";
+export const $cardHoverColor = "#f5f5f5";
 
 export const $bodyBgColor = "#fff";
 

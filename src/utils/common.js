@@ -5,3 +5,12 @@ export function genImgUrl(url, w, h) {
   url += `?param=${w}y${h}`;
   return url;
 }
+
+export function pad(num, n = 2) {
+  let len = num.toString().length;
+  while (len < n) {
+    num = "0" + num;
+    len++;
+  }
+  return num;
+}

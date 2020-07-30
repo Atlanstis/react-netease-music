@@ -1,5 +1,5 @@
 import * as actionTypes from "./action-types";
-import { getBanner, getPersonalized } from "@/api";
+import { getBanner, getPersonalized, getLatestSongs } from "@/api";
 
 // 获取首页 banner
 export const getBannerAction = () => {
@@ -15,6 +15,21 @@ export const getRecommSongListAction = () => {
     getPersonalized({ limit: 10 }).then(({ result }) => {
       dispatch(setRecommSongList(result));
     });
+  };
+};
+
+export const getLatestSongsAction = () => {
+  return (dispatch) => {
+    getLatestSongs().then(({ result }) => {
+      dispatch(setLatestSongs(result));
+    });
+  };
+};
+
+const setLatestSongs = (list) => {
+  return {
+    type: actionTypes.SET_LATEST_SONGS,
+    list,
   };
 };
 
