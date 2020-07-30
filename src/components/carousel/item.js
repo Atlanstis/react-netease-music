@@ -33,7 +33,7 @@ class CarouselItem extends Component {
       inStage = Math.round(Math.abs(index - activeIndex)) <= 1;
       active = index === activeIndex;
       translate = this.calcCardTranslate(index, activeIndex, inStage);
-      scale = this.active ? 1 : CARD_SCALE;
+      scale = active ? 1 : CARD_SCALE;
     } else {
       active = index === activeIndex;
       const isVertical = direction === "vertical";

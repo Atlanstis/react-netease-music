@@ -1,28 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Carousel } from "@/components/carousel";
+import styled from "styled-components";
+import { actionCreator } from "./store";
+import Banner from "./components/banner";
 class Recommend extends Component {
+  componentDidMount() {
+    this.props.getRecommendData();
+  }
+
   render() {
     return (
-      <div>
-        发现页
-        <div>
-          <Carousel height="200px">
-            <div className="slide" style={{ background: "red" }}>
-              1
-            </div>
-            <div className="slide" style={{ background: "blue" }}>
-              2
-            </div>
-            <div className="slide" style={{ background: "green" }}>
-              3
-            </div>
-            <div className="slide" style={{ background: "white" }}>
-              4
-            </div>
-          </Carousel>
-        </div>
-      </div>
+      <RecommpendWrapper>
+        <Banner />
+      </RecommpendWrapper>
     );
   }
 }
@@ -32,6 +22,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    getRecommendData() {
+      dispatch(actionCreator.getBannerAction());
+    },
+  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Recommend);
+
+const RecommpendWrapper = styled.div`
+  padding: 18px 32px;
+`;
