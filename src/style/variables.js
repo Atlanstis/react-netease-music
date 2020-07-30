@@ -27,6 +27,7 @@ export const $fontSizeSm = "12px";
 export const $fontSizeMediumSm = "13px";
 export const $fontSize = "14px;";
 export const $fontSizeL = "16px";
+export const $fontSizeTitle = "18px";
 
 // mini-player
 export const $miniPlayerHeight = "60px";
