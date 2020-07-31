@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { $white, $fontSizeSm } from "./variables.js";
 
 export const flexCenter = css`
   display: flex;
@@ -45,4 +46,46 @@ export const absCenter = css`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+`;
+
+export const listMixin = ($itemWidth) => {
+  return css`
+    .list-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -12px;
+
+      .list-item {
+        width: ${$itemWidth};
+        margin-bottom: 36px;
+        padding: 0 12px;
+      }
+    }
+  `;
+};
+
+export const descWrap = css`
+  overflow: hidden;
+
+  .desc-wrap {
+    position: absolute;
+    padding: 6px;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    transform: translateY(-100%);
+    transition: all 0.3s;
+
+    .desc {
+      color: ${$white};
+      font-size: ${$fontSizeSm};
+    }
+  }
+
+  &:hover {
+    .desc-wrap {
+      transform: translateY(0);
+    }
+  }
 `;

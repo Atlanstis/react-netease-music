@@ -14,3 +14,8 @@ export function pad(num, n = 2) {
   }
   return num;
 }
+
+export function formatNumber(number) {
+  number = Number(number) || 0;
+  return number > 100000 ? `${Math.round(number / 10000)}万` : number;
+}

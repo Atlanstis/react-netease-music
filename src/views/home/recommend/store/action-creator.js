@@ -1,5 +1,10 @@
 import * as actionTypes from "./action-types";
-import { getBanner, getPersonalized, getLatestSongs } from "@/api";
+import {
+  getBanner,
+  getPersonalized,
+  getLatestSongs,
+  getPersonalizedMv,
+} from "@/api";
 
 // 获取首页 banner
 export const getBannerAction = () => {
@@ -7,6 +12,12 @@ export const getBannerAction = () => {
     getBanner().then(({ banners }) => {
       dispatch(setBanners(banners));
     });
+  };
+};
+const setBanners = (list) => {
+  return {
+    type: actionTypes.SET_BANNERS,
+    list,
   };
 };
 
@@ -17,6 +28,12 @@ export const getRecommSongListAction = () => {
     });
   };
 };
+const setRecommSongList = (list) => {
+  return {
+    type: actionTypes.SET_RECOMM_SONG_LIST,
+    list,
+  };
+};
 
 export const getLatestSongsAction = () => {
   return (dispatch) => {
@@ -25,7 +42,6 @@ export const getLatestSongsAction = () => {
     });
   };
 };
-
 const setLatestSongs = (list) => {
   return {
     type: actionTypes.SET_LATEST_SONGS,
@@ -33,16 +49,16 @@ const setLatestSongs = (list) => {
   };
 };
 
-const setRecommSongList = (list) => {
-  return {
-    type: actionTypes.SET_RECOMM_SONG_LIST,
-    list,
+export const getRecommMvsAction = () => {
+  return (dispatch) => {
+    getPersonalizedMv().then(({ result }) => {
+      dispatch(setRecommMvs(result));
+    });
   };
 };
-
-const setBanners = (list) => {
+const setRecommMvs = (list) => {
   return {
-    type: actionTypes.SET_BANNERS,
+    type: actionTypes.SET_RECOMM_MVS,
     list,
   };
 };

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Title from "@/components/title";
 import { genImgUrl } from "@/utils/common";
 import { $white, $fontSizeSm } from "@/style/variables";
-import { textEllipsis } from "@/style/mixins";
+import { textEllipsis, descWrap } from "@/style/mixins";
 import PlayIcon from "@/components/play-icon";
 
 function RecommSongList(props) {
@@ -72,21 +72,7 @@ const Card = styled.div`
       height: 100%;
     }
 
-    .desc-wrap {
-      position: absolute;
-      padding: 6px;
-      left: 0;
-      right: 0;
-      top: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      transform: translateY(-100%);
-      transition: all 0.3s;
-
-      .desc {
-        color: ${$white};
-        font-size: ${$fontSizeSm};
-      }
-    }
+    ${descWrap};
 
     .play-icon {
       opacity: 0;
@@ -99,10 +85,6 @@ const Card = styled.div`
     }
 
     &:hover {
-      .desc-wrap {
-        transform: translateY(0);
-      }
-
       .play-icon {
         opacity: 1;
       }

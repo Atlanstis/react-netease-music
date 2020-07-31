@@ -7,7 +7,7 @@ import {
   $fontColorTitle,
 } from "@/style/variables";
 
-function ArtistsText(props) {
+function ArtistsName(props) {
   const { artists, className } = props;
   let length = artists.length;
   return (
@@ -32,11 +32,15 @@ function ArtistsText(props) {
   );
 }
 
-ArtistsText.propTypes = {
-  artists: PropTypes.arrayOf(PropTypes.object),
+ArtistsName.propTypes = {
+  artists: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-export default ArtistsText;
+ArtistsName.defaultProps = {
+  artists: [],
+};
+
+export default ArtistsName;
 
 const ArtistSpan = styled.span`
   font-size: ${$fontSizeXs};

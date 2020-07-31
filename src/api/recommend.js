@@ -11,3 +11,6 @@ export const getPersonalized = (params) =>
 
 // 获取推荐页 最新歌曲
 export const getLatestSongs = () => request.get("/personalized/newsong");
+
+// 获取推荐页 推荐mv
+export const getPersonalizedMv = () => request.get(`/personalized/mv`);
