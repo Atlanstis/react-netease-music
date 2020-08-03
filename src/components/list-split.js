@@ -75,11 +75,11 @@ const ListSplitWrap = styled.div`
       flex: 1;
       overflow: hidden;
 
-      :first-child {
-        border-top: 1px solid ${$borderColor};
-      }
       > div {
         border-bottom: 1px solid ${$borderColor};
+        &:first-child {
+          border-top: 1px solid ${$borderColor};
+        }
       }
     }
     .list-split {
