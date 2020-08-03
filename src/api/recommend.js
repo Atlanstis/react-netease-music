@@ -14,3 +14,7 @@ export const getLatestSongs = () => request.get("/personalized/newsong");
 
 // 获取推荐页 推荐mv
 export const getPersonalizedMv = () => request.get(`/personalized/mv`);
+
+// 获取推荐页 主播电台
+export const getPersonalizedDjProgram = () =>
+  request.get(`/personalized/djprogram`);

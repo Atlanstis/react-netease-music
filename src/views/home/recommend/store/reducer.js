@@ -5,6 +5,7 @@ const defaultState = fromJS({
   recommSongList: [],
   latestSongs: [],
   recommMvs: [],
+  djProgram: [],
 });
 
 export default (state = defaultState, action) => {
@@ -24,6 +25,10 @@ export default (state = defaultState, action) => {
     case actionTypes.SET_RECOMM_MVS:
       return state.merge({
         recommMvs: fromJS(action.list),
+      });
+    case actionTypes.SET_RECOMM_DJ_PROGRAM:
+      return state.merge({
+        djProgram: fromJS(action.list),
       });
     default:
       return state;

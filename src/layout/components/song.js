@@ -22,7 +22,7 @@ class Song extends Component {
       <SongWrapper>
         {hasCurrentSong ? (
           <Fragment>
-            <ImgWrapper width={40}>
+            <ImgWrapper>
               <ImgMask className="mask">
                 <Icon type="expand" size={32} color="white"></Icon>
               </ImgMask>
@@ -60,7 +60,7 @@ const ImgWrapper = styled.div`
   border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  ${imgWrap}
+  ${imgWrap(40)}
 
   :hover {
     img {

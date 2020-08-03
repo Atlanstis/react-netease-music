@@ -4,6 +4,7 @@ import {
   getPersonalized,
   getLatestSongs,
   getPersonalizedMv,
+  getPersonalizedDjProgram,
 } from "@/api";
 
 // 获取首页 banner
@@ -59,6 +60,20 @@ export const getRecommMvsAction = () => {
 const setRecommMvs = (list) => {
   return {
     type: actionTypes.SET_RECOMM_MVS,
+    list,
+  };
+};
+
+export const getRecommDjProgramAction = () => {
+  return (dispatch) => {
+    getPersonalizedDjProgram().then(({ result }) => {
+      dispatch(setRecommDjProgram(result));
+    });
+  };
+};
+const setRecommDjProgram = (list) => {
+  return {
+    type: actionTypes.SET_RECOMM_DJ_PROGRAM,
     list,
   };
 };

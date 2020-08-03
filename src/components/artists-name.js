@@ -7,22 +7,29 @@ import {
   $fontColorTitle,
 } from "@/style/variables";
 
+const keyMap = {
+  dj: { nameKey: "nickname", idKey: "userId" },
+  singer: { nameKey: "name", idKey: "id" },
+};
+
 function ArtistsName(props) {
-  const { artists, className } = props;
+  const { artists, className, type } = props;
+  let { nameKey, idKey } = keyMap[type];
+
   let length = artists.length;
   return (
     <p className={className}>
       {artists.map((artist, index) => {
         if (index === length - 1) {
           return (
-            <Fragment key={artist.id}>
-              <ArtistSpan>{artist.name}</ArtistSpan>
+            <Fragment key={artist[idKey]}>
+              <ArtistSpan>{artist[nameKey]}</ArtistSpan>
             </Fragment>
           );
         } else {
           return (
-            <Fragment key={artist.id}>
-              <ArtistSpan>{artist.name}</ArtistSpan>
+            <Fragment key={artist[idKey]}>
+              <ArtistSpan>{artist[nameKey]}</ArtistSpan>
               <SplitSpan>/</SplitSpan>
             </Fragment>
           );
@@ -34,10 +41,12 @@ function ArtistsName(props) {
 
 ArtistsName.propTypes = {
   artists: PropTypes.arrayOf(PropTypes.object).isRequired,
+  type: PropTypes.string,
 };
 
 ArtistsName.defaultProps = {
   artists: [],
+  type: "singer",
 };
 
 export default ArtistsName;

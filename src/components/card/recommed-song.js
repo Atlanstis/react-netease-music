@@ -9,7 +9,7 @@ import {
   $fontColorTitle,
   $fontSize,
 } from "@/style/variables";
-import { flexCenter, absCenter, textEllipsis } from "@/style/mixins";
+import { flexCenter, absCenter, textEllipsis, imgWrap } from "@/style/mixins";
 import styled from "styled-components";
 
 function Songs(props) {
@@ -62,16 +62,10 @@ const SongCard = styled.div`
 
   .img-wrap {
     position: relative;
-    width: 60px;
-    height: 60px;
     margin-right: 8px;
     border-radius: 4px;
     overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    ${imgWrap(60)};
 
     .play-icon {
       ${absCenter};
