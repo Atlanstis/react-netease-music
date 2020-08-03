@@ -4,8 +4,11 @@ import styled from "styled-components";
 import Title from "@/components/title";
 import { genImgUrl } from "@/utils/common";
 import { $white, $fontSizeSm } from "@/style/variables";
-import { textEllipsis, descWrap } from "@/style/mixins";
+import { textEllipsis } from "@/style/mixins";
+import { $$playCountWrap } from "@/style/mixin-component";
 import PlayIcon from "@/components/play-icon";
+import Icon from "@/components/icon";
+import { formatNumber } from "@/utils/common";
 
 function RecommSongList(props) {
   return props.list.size ? (
@@ -17,9 +20,10 @@ function RecommSongList(props) {
             <Card className="playlist-card" key={card.get("id")}>
               <div className="img-wrap">
                 <img src={genImgUrl(card.get("picUrl"))} alt="" />
-                {card.get("copywriter") ? (
-                  <div className="desc-wrap">
-                    <span className="desc">{card.get("copywriter")}</span>
+                {card.get("playCount") ? (
+                  <div className="play-count-wrap" v-if="playCount">
+                    <Icon type="play-hollow" size={14} />
+                    {formatNumber(card.get("playCount"))}
                   </div>
                 ) : null}
                 <PlayIcon size={36} className="play-icon"></PlayIcon>
@@ -72,7 +76,7 @@ const Card = styled.div`
       height: 100%;
     }
 
-    ${descWrap};
+    ${$$playCountWrap};
 
     .play-icon {
       opacity: 0;

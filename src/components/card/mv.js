@@ -5,8 +5,9 @@ import styled from "styled-components";
 import { genImgUrl, formatNumber } from "@/utils/common";
 import Icon from "@/components/icon";
 import ArtistsName from "@/components/artists-name";
-import { absStretch, textEllipsis, descWrap } from "@/style/mixins";
-import { $fontSizeSm, $white } from "@/style/variables";
+import { absStretch, textEllipsis } from "@/style/mixins";
+import { $$playCountWrap, $$descWrap } from "@/style/mixin-component";
+import { $fontSizeSm } from "@/style/variables";
 
 class MvCard extends Component {
   render() {
@@ -66,21 +67,9 @@ const MvCardWrapper = styled.div`
       border-radius: 4px;
     }
 
-    .play-count-wrap {
-      display: flex;
-      align-items: center;
-      position: absolute;
-      right: 6px;
-      top: 2px;
-      font-size: ${$fontSizeSm};
-      color: ${$white};
-      i {
-        display: inline-block;
-        margin-right: 4px;
-      }
-    }
+    ${$$playCountWrap};
 
-    ${descWrap};
+    ${$$descWrap};
 
     &:hover {
       .play-count-wrap {
