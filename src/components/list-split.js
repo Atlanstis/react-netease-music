@@ -1,6 +1,11 @@
 import React, { Fragment, Component } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { $borderColor } from "@/style/variables";
+
+function getOrder(listIndex, index, lineSums) {
+  return listIndex * lineSums + index + 1;
+}
 
 function listSplitFunc(list, splitRows) {
   const lineSums = Math.ceil(list.length / splitRows);
@@ -15,13 +20,20 @@ class ListSplit extends Component {
   render() {
     const { list, splitRows, CardEle } = this.props;
     const thunkedList = listSplitFunc(list, splitRows);
+    const rowSums = Math.ceil(list.length / splitRows);
     return (
       <ListSplitWrap className="list-wrap">
         {thunkedList.map((list, listIndex) => {
           let rowHtml = (
             <div className="list">
-              {list.map((card) => {
-                return <CardEle key={card.id} card={card}></CardEle>;
+              {list.map((card, index) => {
+                return (
+                  <CardEle
+                    orderIndex={getOrder(listIndex, index, rowSums)}
+                    key={card.id}
+                    card={card}
+                  ></CardEle>
+                );
               })}
             </div>
           );
@@ -62,6 +74,13 @@ const ListSplitWrap = styled.div`
     .list {
       flex: 1;
       overflow: hidden;
+
+      :first-child {
+        border-top: 1px solid ${$borderColor};
+      }
+      > div {
+        border-bottom: 1px solid ${$borderColor};
+      }
     }
     .list-split {
       flex: 0 0 20px;

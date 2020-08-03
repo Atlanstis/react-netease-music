@@ -12,7 +12,6 @@ import { textEllipsis, imgWrap } from "@/style/mixins";
 
 function CardDjProgram(props) {
   let { card } = props;
-  console.log(card);
   return (
     <CardWraper>
       <div className="img-wrap">
