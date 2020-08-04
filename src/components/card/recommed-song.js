@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { genImgUrl, pad } from "@/utils/common";
 import PlayIcon from "@/components/play-icon";
@@ -8,44 +8,62 @@ import {
   $cardHoverColor,
   $fontColorTitle,
   $fontSize,
+  $fontColorPrimary,
 } from "@/style/variables";
 import { flexCenter, absCenter, textEllipsis, imgWrap } from "@/style/mixins";
 import styled from "styled-components";
 
-function Songs(props) {
-  let { card, orderIndex } = props;
-  return (
-    <SongCard>
-      <div className="order-wrap">
-        <span>{pad(orderIndex)}</span>
-      </div>
-      <div className="img-wrap">
-        <img src={genImgUrl(card.picUrl, 120)} alt="" />
-        <PlayIcon size={22} className="play-icon" />
-      </div>
-      <div className="song-content">
-        <p className="song-name">{card.name}</p>
-        <ArtistsName
-          className="singer"
-          artists={card.song.artists}
-        ></ArtistsName>
-      </div>
-    </SongCard>
-  );
+class Song extends Component {
+  constructor(props) {
+    super(props);
+    this.onSongCardClick = this.onSongCardClick.bind(this);
+  }
+
+  onSongCardClick() {}
+
+  render() {
+    let {
+      card,
+      card: { song },
+      orderIndex,
+    } = this.props;
+    let songAlias = null;
+    if (song.alias.length) {
+      songAlias = <span className="song-alias">（{card.song.alias[0]}）</span>;
+    }
+    return (
+      <SongCard>
+        <div className="img-wrap" onClick={this.onSongCardClick}>
+          <img src={genImgUrl(card.picUrl, 120)} alt="" />
+          <PlayIcon size={22} className="play-icon" />
+        </div>
+        <div className="order-wrap">
+          <span>{pad(orderIndex)}</span>
+        </div>
+        <div className="song-content">
+          <p className="song-name">
+            {card.name}
+            {songAlias}
+          </p>
+          <ArtistsName className="singer" artists={song.artists}></ArtistsName>
+        </div>
+      </SongCard>
+    );
+  }
 }
 
-Songs.propTypes = {
+Song.propTypes = {
   card: PropTypes.object.isRequired,
   orderIndex: PropTypes.number.isRequired,
 };
 
-export default Songs;
+export default Song;
 
 const SongCard = styled.div`
   display: flex;
   padding: 8px;
   font-size: ${$fontSizeSm};
-  cursor: pointer;
+  cursor: default;
 
   div {
     flex-shrink: 0;
@@ -58,6 +76,7 @@ const SongCard = styled.div`
     ${flexCenter};
     width: 30px;
     margin-right: 8px;
+    color: ${$fontColorPrimary};
   }
 
   .img-wrap {
@@ -65,6 +84,7 @@ const SongCard = styled.div`
     margin-right: 8px;
     border-radius: 4px;
     overflow: hidden;
+    cursor: pointer;
     ${imgWrap(60)};
 
     .play-icon {
@@ -83,6 +103,9 @@ const SongCard = styled.div`
       ${textEllipsis};
       font-size: ${$fontSize};
       color: ${$fontColorTitle};
+      .song-alias {
+        color: ${$fontColorPrimary};
+      }
     }
 
     .singer {
