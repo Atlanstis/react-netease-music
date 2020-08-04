@@ -2,16 +2,21 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Icon from "@/components/icon";
 import { $progressBgColor, $themeColor } from "@/style/variables";
+import { connect } from "react-redux";
 import { prefixStyle } from "@/utils/dom";
+import { actionCreator } from "@/store/modules/music-player";
 const transform = prefixStyle("transform");
 
 class Volume extends Component {
+  progressBarHeight = 0;
+
   constructor(props) {
     super(props);
     this.state = {
+      initiated: false,
       mouseIn: false,
-      volume: 0,
-      volumeBak: 0,
+      offsetHeight: 0,
+      offsetHeightBak: 0,
     };
     this.handleMouseStatus = this.handleMouseStatus.bind(this);
     this.progressClick = this.progressClick.bind(this);
@@ -30,40 +35,59 @@ class Volume extends Component {
     const rect = this.$progressBar.getBoundingClientRect();
     const offsetHeight = Math.max(
       0,
-      Math.min(rect.bottom - e.pageY, this.$progressBar.clientHeight)
+      Math.min(rect.bottom - e.pageY, this.progressBarHeight)
     );
-    this.offset(offsetHeight);
-  }
-
-  offset(offsetHeight) {
     this.setState(() => {
       return {
-        volume: offsetHeight,
+        offsetHeight,
       };
     });
+    this.setVolumeStorage(offsetHeight);
   }
 
   toggleVolume() {
-    const { volume } = this.state;
-    if (volume === 0) {
-      this.setState((state) => {
-        return {
-          volume: state.volumeBak,
-        };
-      });
+    let { offsetHeight, offsetHeightBak } = this.state;
+    if (offsetHeight === 0) {
+      offsetHeight = offsetHeightBak;
     } else {
-      this.setState((state) => {
-        return {
-          volumeBak: state.volume,
-          volume: 0,
-        };
+      offsetHeightBak = offsetHeight;
+      offsetHeight = 0;
+    }
+    this.setState({
+      offsetHeight,
+      offsetHeightBak,
+    });
+    this.setVolumeStorage(offsetHeight);
+  }
+
+  setVolumeStorage(offsetHeight) {
+    let volume = Number((offsetHeight / this.progressBarHeight).toFixed(2));
+    this.props.setVolume(volume);
+  }
+
+  componentDidMount() {
+    let { initiated, offsetHeight } = this.state;
+    const { volume } = this.props;
+    if (!initiated) {
+      this.progressBarHeight = this.$progressBar.clientHeight;
+      if (volume > 0) {
+        offsetHeight = volume * this.progressBarHeight;
+      }
+      this.setState({
+        initiated: true,
+        offsetHeight,
+        offsetHeightBak: offsetHeight,
       });
     }
   }
 
   render() {
-    let { mouseIn, volume } = this.state;
-    let transformBak = transform.charAt(0).toUpperCase() + transform.substr(1);
+    const { mouseIn, initiated, offsetHeight } = this.state;
+    let VolumeBarStyle = !initiated
+      ? { visibility: "hidden" }
+      : { display: mouseIn ? "" : "none" };
+    let transformCompatible =
+      transform.charAt(0).toUpperCase() + transform.substr(1);
     return (
       <VolumeWrapper
         onMouseEnter={() => {
@@ -74,39 +98,51 @@ class Volume extends Component {
         }}
       >
         <Icon
-          type={volume > 0 ? "volume-open" : "volume-mute"}
+          type={offsetHeight > 0 ? "volume-open" : "volume-mute"}
           size={24}
           iconClass="icon"
           onClick={this.toggleVolume}
         ></Icon>
-        {mouseIn ? (
-          <VolumeBar>
-            <VolumeProgressBar
-              onClick={this.progressClick}
-              ref={($progressBar) => {
-                this.$progressBar = $progressBar;
-              }}
-            >
-              <BarInner>
-                <Progress style={{ height: `${volume}px` }}></Progress>
-                <ProgressBtnWrapper>
-                  <ProgressBtn
-                    style={{
-                      [transformBak]: `translate3d(0, -${volume}px, 0)`,
-                    }}
-                  ></ProgressBtn>
-                </ProgressBtnWrapper>
-              </BarInner>
-            </VolumeProgressBar>
-            <VolumeArrow></VolumeArrow>
-          </VolumeBar>
-        ) : null}
+        <VolumeBar style={VolumeBarStyle}>
+          <VolumeProgressBar
+            onClick={this.progressClick}
+            ref={($progressBar) => {
+              this.$progressBar = $progressBar;
+            }}
+          >
+            <BarInner>
+              <Progress style={{ height: `${offsetHeight}px` }}></Progress>
+              <ProgressBtnWrapper>
+                <ProgressBtn
+                  style={{
+                    [transformCompatible]: `translate3d(0, -${offsetHeight}px, 0)`,
+                  }}
+                ></ProgressBtn>
+              </ProgressBtnWrapper>
+            </BarInner>
+          </VolumeProgressBar>
+          <VolumeArrow></VolumeArrow>
+        </VolumeBar>
       </VolumeWrapper>
     );
   }
 }
 
-export default Volume;
+const mapStateToProps = (state) => {
+  return {
+    volume: state.getIn(["musicPlayer", "volume"]),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setVolume(volume) {
+      dispatch(actionCreator.setVolumeAction(volume));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Volume);
 
 const VolumeWrapper = styled.div`
   position: relative;
