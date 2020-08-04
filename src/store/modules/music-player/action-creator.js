@@ -6,3 +6,10 @@ export const setVolumeAction = (volume) => {
     volume,
   };
 };
+
+export const setPlayingState = (state) => {
+  return {
+    type: actionTypes.SET_PLAYING_STATE,
+    state,
+  };
+};
