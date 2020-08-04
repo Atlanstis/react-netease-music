@@ -40,3 +40,4 @@
 - customize-cra, react-app-rewired: 覆盖项目默认配置
 - resize-observer-polyfill: ResizeObserver 支持
 - classnames: 动态绑定 className
+- good-storage: 操作 sessionStorage 和 localStorage 的储存库[GitHub 链接](https://github.com/ustbhuangyi/storage#readme)
