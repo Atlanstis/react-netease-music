@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import Icon from "@/components/icon";
 import ArtistsName from "@/components/artists-name";
-import { formatTime } from "@/utils/common";
+import { formatTime, genImgUrl } from "@/utils/common";
+
 import { imgWrap, absStretch, absCenter, textEllipsis } from "@/style/mixins";
 import {
   $fontSizeXs,
@@ -25,7 +26,7 @@ class Song extends Component {
               </ImgMask>
               <img
                 alt={currentSong.get("name")}
-                src={currentSong.get("picUrl")}
+                src={genImgUrl(currentSong.get("picUrl"), 120)}
               />
             </ImgWrapper>
             <Content>
