@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     togglePlayingState(state) {
-      dispatch(actionCreator.setPlayingState(state));
+      dispatch(actionCreator.setPlayingStateAction(state));
     },
   };
 };

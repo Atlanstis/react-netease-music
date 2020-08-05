@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { genImgUrl, pad } from "@/utils/common";
 import PlayIcon from "@/components/play-icon";
 import ArtistsName from "@/components/artists-name";
@@ -12,6 +13,7 @@ import {
 } from "@/style/variables";
 import { flexCenter, absCenter, textEllipsis, imgWrap } from "@/style/mixins";
 import styled from "styled-components";
+import { actionCreator } from "@/store/modules/music-player";
 
 class Song extends Component {
   constructor(props) {
@@ -19,7 +21,9 @@ class Song extends Component {
     this.onSongCardClick = this.onSongCardClick.bind(this);
   }
 
-  onSongCardClick() {}
+  onSongCardClick() {
+    this.props.playSong(this.props.card);
+  }
 
   render() {
     let {
@@ -57,7 +61,15 @@ Song.propTypes = {
   orderIndex: PropTypes.number.isRequired,
 };
 
-export default Song;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    playSong(song) {
+      dispatch(actionCreator.playSongAction(song));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Song);
 
 const SongCard = styled.div`
   display: flex;

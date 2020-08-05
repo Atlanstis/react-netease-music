@@ -57,7 +57,7 @@ export default ListSplit;
 
 ListSplit.propTypes = {
   list: PropTypes.arrayOf(PropTypes.object).isRequired,
-  CardEle: PropTypes.func.isRequired,
+  CardEle: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
   onCardClick: PropTypes.func,
   splitRows: PropTypes.number,
 };

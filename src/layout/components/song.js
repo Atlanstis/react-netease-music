@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import Icon from "@/components/icon";
+import ArtistsName from "@/components/artists-name";
+import { formatTime } from "@/utils/common";
 import { imgWrap, absStretch, absCenter, textEllipsis } from "@/style/mixins";
 import {
   $fontSizeXs,
@@ -9,15 +12,9 @@ import {
 } from "@/style/variables";
 
 class Song extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasCurrentSong: false,
-    };
-  }
-
   render() {
-    let { hasCurrentSong } = this.state;
+    const { currentSong } = this.props;
+    const hasCurrentSong = currentSong.get("id");
     return (
       <SongWrapper>
         {hasCurrentSong ? (
@@ -26,18 +23,24 @@ class Song extends Component {
               <ImgMask className="mask">
                 <Icon type="expand" size={32} color="white"></Icon>
               </ImgMask>
-              <img alt="" src="" />
+              <img
+                alt={currentSong.get("name")}
+                src={currentSong.get("picUrl")}
+              />
             </ImgWrapper>
             <Content>
               <ContentTop>
-                <span className="name">歌名</span>
+                <span className="name">{currentSong.get("name")}</span>
                 <span className="split">-</span>
-                <span className="artists">歌手</span>
+                <ArtistsName
+                  className="artists"
+                  artists={currentSong.get("artists").toJS()}
+                ></ArtistsName>
               </ContentTop>
               <ContentTime>
                 <span>00:00</span>
                 <span className="split">/</span>
-                <span>04:32</span>
+                <span>{formatTime(currentSong.get("duration") / 1000)}</span>
               </ContentTime>
             </Content>
           </Fragment>
@@ -47,7 +50,13 @@ class Song extends Component {
   }
 }
 
-export default Song;
+const mapStateToProps = (state) => {
+  return {
+    currentSong: state.getIn(["musicPlayer", "currentSong"]),
+  };
+};
+
+export default connect(mapStateToProps, null)(Song);
 
 const SongWrapper = styled.div`
   display: flex;
@@ -98,7 +107,7 @@ const ContentTop = styled.div`
   white-space: nowrap;
 
   .name {
-    max-width: 100px;
+    max-width: 140px;
     color: ${$fontColorTitle};
     cursor: pointer;
     ${textEllipsis};
@@ -109,15 +118,7 @@ const ContentTop = styled.div`
     color: ${$fontColorPrimary};
   }
   .artists {
-    max-width: 60px;
-    font-size: ${$fontSizeXs};
-    color: ${$fontColorPrimary};
-    cursor: pointer;
-    ${textEllipsis};
-
-    &:hover {
-      color: ${$fontColorTitle};
-    }
+    max-width: 100px;
   }
 `;
 
