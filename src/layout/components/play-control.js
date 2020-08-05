@@ -18,6 +18,10 @@ class PlayControl extends Component {
   }
 
   togglePlaying() {
+    let { currentSong } = this.props;
+    if (!currentSong.get("id")) {
+      return;
+    }
     this.props.togglePlayingState(!this.props.playing);
   }
 
@@ -55,6 +59,7 @@ class PlayControl extends Component {
 const mapStateToProps = (state) => {
   return {
     playing: state.getIn(["musicPlayer", "playingState"]),
+    currentSong: state.getIn(["musicPlayer", "currentSong"]),
   };
 };
 

@@ -13,6 +13,7 @@ const PLAY_HISTORY_MAX_LENGTH = 100;
 const defaultState = fromJS({
   volume: storage.get(VOLUME_KEY, 0.75),
   currentSong: storage.get(LAST_PLAY_SONG, {}),
+  currentTime: 0,
   playingState: false,
   playList: [],
   playHistoryList: storage.get(PLAY_HISTORY_KEY, []),
@@ -34,6 +35,10 @@ export default (state = defaultState, action) => {
       storage.set(LAST_PLAY_SONG, action.song);
       return state.merge({
         currentSong: fromJS(action.song),
+      });
+    case actionTypes.SET_CURRENT_TIME:
+      return state.merge({
+        currentTime: fromJS(action.time),
       });
     case actionTypes.SET_PLAY_HISTORY:
       let { song } = action;

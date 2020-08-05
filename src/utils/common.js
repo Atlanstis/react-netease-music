@@ -6,6 +6,10 @@ export function genImgUrl(url, w, h) {
   return url;
 }
 
+export function genSongPlayUrl(id) {
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
+}
+
 // 数字补0
 export function pad(num, n = 2) {
   let len = num.toString().length;

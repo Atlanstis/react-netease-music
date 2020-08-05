@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Icon from "@/components/icon";
-import ProgreesBar from "@/components/progress-bar";
-import { PLayControl, PlayMode, Song, Volume } from "./components";
+import {
+  PLayControl,
+  PlayMode,
+  Song,
+  Volume,
+  Audio,
+  ProgressBarWrap,
+} from "./components";
 import {
   $miniPlayerZIndex,
   $miniPlayerHeight,
@@ -11,6 +17,19 @@ import {
 } from "@/style/variables";
 
 class MiniPlayer extends Component {
+  constructor(props) {
+    super(props);
+    this.onPercentClickChange = this.onPercentClickChange.bind(this);
+  }
+
+  onPercentClickChange(percent) {
+    this.audio.currentTimeClickChange(percent);
+  }
+
+  onRef = (ref) => {
+    this.audio = ref;
+  };
+
   render() {
     return (
       <MiniPlayerWrapper>
@@ -28,9 +47,8 @@ class MiniPlayer extends Component {
           <Volume></Volume>
         </ButtonAreaWrapper>
         {/* 音乐播放进度条 */}
-        <ProgressBarWrpper>
-          <ProgreesBar></ProgreesBar>
-        </ProgressBarWrpper>
+        <ProgressBarWrap onPercentClickChange={this.onPercentClickChange} />
+        <Audio onRef={this.onRef} />
       </MiniPlayerWrapper>
     );
   }
@@ -61,11 +79,4 @@ const ButtonAreaWrapper = styled.div`
     color: ${$miniPlayerIconColor};
     margin-left: 16px;
   }
-`;
-
-const ProgressBarWrpper = styled.div`
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -14px;
 `;

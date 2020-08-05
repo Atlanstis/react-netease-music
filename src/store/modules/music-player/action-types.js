@@ -7,3 +7,5 @@ export const SET_PLAYING_STATE = `${_BASE}/SET_PLAYING_STATE`;
 export const SET_CURRENT_SONG = `${_BASE}/SET_CURRENT_SONG`;
 // 设置历史播放记录
 export const SET_PLAY_HISTORY = `${_BASE}/SET_PLAY_HISTORY`;
+// 设置当前播放时间
+export const SET_CURRENT_TIME = `${_BASE}/SET_CURRENT_TIME`;

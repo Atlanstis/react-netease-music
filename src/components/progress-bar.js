@@ -11,14 +11,32 @@ class ProgressBar extends Component {
     this.progressClick = this.progressClick.bind(this);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.percent !== this.props.percent) {
+      this.setProgressOffset(nextProps.percent);
+    }
+    return false;
+  }
+
   progressClick(e) {
     const { disabled } = this.props;
     if (!disabled) {
       const rect = this.$progressBar.getBoundingClientRect();
+      const progressBarWidth = this.$progressBar.clientWidth;
       const offsetWidth = Math.max(
         0,
-        Math.min(e.pageX - rect.left, this.$progressBar.clientWidth)
+        Math.min(e.pageX - rect.left, progressBarWidth)
       );
+      this.offset(offsetWidth);
+      const percent = offsetWidth / progressBarWidth;
+      this.props.onPercentClickChange(percent);
+    }
+  }
+
+  setProgressOffset(percent) {
+    if (percent >= 0) {
+      const barWidth = this.$progressBar.clientWidth;
+      const offsetWidth = percent * barWidth;
       this.offset(offsetWidth);
     }
   }
@@ -66,11 +84,15 @@ export default ProgressBar;
 ProgressBar.propTypes = {
   disabled: PropTypes.bool,
   btnshow: PropTypes.bool,
+  percent: PropTypes.number,
+  onPercentClickChange: PropTypes.func,
 };
 
 ProgressBar.defaultProps = {
   disabled: false,
   btnshow: false,
+  percent: 0,
+  onPercentClickChange: () => {},
 };
 
 const ProgressBarWrapper = styled.div`

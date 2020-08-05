@@ -13,7 +13,7 @@ import {
 
 class Song extends Component {
   render() {
-    const { currentSong } = this.props;
+    const { currentSong, currentTime } = this.props;
     const hasCurrentSong = currentSong.get("id");
     return (
       <SongWrapper>
@@ -38,9 +38,9 @@ class Song extends Component {
                 ></ArtistsName>
               </ContentTop>
               <ContentTime>
-                <span>00:00</span>
+                <span>{formatTime(currentTime)}</span>
                 <span className="split">/</span>
-                <span>{formatTime(currentSong.get("duration") / 1000)}</span>
+                <span>{formatTime(currentSong.get("durationSec"))}</span>
               </ContentTime>
             </Content>
           </Fragment>
@@ -53,6 +53,7 @@ class Song extends Component {
 const mapStateToProps = (state) => {
   return {
     currentSong: state.getIn(["musicPlayer", "currentSong"]),
+    currentTime: state.getIn(["musicPlayer", "currentTime"]),
   };
 };
 

@@ -1,4 +1,5 @@
 import * as actionTypes from "./action-types";
+import { genSongPlayUrl } from "@/utils/common.js";
 
 export const setVolumeAction = (volume) => {
   return {
@@ -20,7 +21,8 @@ export const playSongAction = (song) => {
       id: song.id,
       picUrl: song.picUrl,
       name: song.name,
-      duration: song.song.duration,
+      url: genSongPlayUrl(song.id),
+      durationSec: song.song.duration / 1000,
       artists: song.song.artists.map((artist) => {
         return {
           id: artist.id,
@@ -45,5 +47,12 @@ const setPlayHistoryAction = (song) => {
   return {
     type: actionTypes.SET_PLAY_HISTORY,
     song,
+  };
+};
+
+export const setCurrentTimeAction = (time) => {
+  return {
+    type: actionTypes.SET_CURRENT_TIME,
+    time,
   };
 };
