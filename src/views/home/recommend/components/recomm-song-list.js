@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import Title from "@/components/title";
-import { genImgUrl } from "@/utils/common";
+import { genImgUrl } from "@/utils/business";
 import { $white, $fontSizeSm } from "@/style/variables";
 import { textEllipsis } from "@/style/mixins";
 import { $$playCountWrap } from "@/style/mixin-component";

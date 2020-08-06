@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { genImgUrl, pad } from "@/utils/common";
+import { pad } from "@/utils/common";
+import { genImgUrl } from "@/utils/business";
 import PlayIcon from "@/components/play-icon";
 import ArtistsName from "@/components/artists-name";
 import {

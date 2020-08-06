@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import Icon from "@/components/icon";
 import ArtistsName from "@/components/artists-name";
-import { formatTime, genImgUrl } from "@/utils/common";
-
+import { formatTime } from "@/utils/common";
+import { genImgUrl } from "@/utils/business";
 import { imgWrap, absStretch, absCenter, textEllipsis } from "@/style/mixins";
 import {
   $fontSizeXs,

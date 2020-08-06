@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Carousel } from "@/components/carousel";
-import { genImgUrl } from "@/utils/common";
+import { genImgUrl } from "@/utils/business";
 
 function Banner(props) {
   let { banners } = props;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ArtistsName from "@/components/artists-name";
-import { genImgUrl } from "@/utils/common";
+import { genImgUrl } from "@/utils/business";
 import {
   $fontSizeSm,
   $cardHoverColor,

@@ -1,5 +1,5 @@
 import * as actionTypes from "./action-types";
-import { genSongPlayUrl } from "@/utils/common.js";
+import { genSongPlayUrl } from "@/utils/business";
 
 export const setVolumeAction = (volume) => {
   return {
