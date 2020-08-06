@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { actionCreator } from "./store";
+import { $fontSize, $fontColorPrimary } from "@/style/variables";
 import {
   Banner,
   RecommSongList,
@@ -15,20 +16,29 @@ class Recommend extends Component {
   }
 
   render() {
+    const { hasDataLoaded } = this.props;
     return (
       <RecommpendWrapper>
-        <Banner />
-        <RecommSongList />
-        <LatestSongs />
-        <RecommMvs />
-        <DjProgram />
+        {hasDataLoaded ? (
+          <Fragment>
+            <Banner />
+            <RecommSongList />
+            <LatestSongs />
+            <RecommMvs />
+            <DjProgram />
+          </Fragment>
+        ) : (
+          <LoadingWrap>载入中...</LoadingWrap>
+        )}
       </RecommpendWrapper>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    hasDataLoaded: state.getIn(["recommend", "hasDataLoaded"]),
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -46,4 +56,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(Recommend);
 
 const RecommpendWrapper = styled.div`
   padding: 18px 32px;
+`;
+
+const LoadingWrap = styled.div`
+  margin-top: 260px;
+  text-align: center;
+  font-size: ${$fontSize};
+  color: ${$fontColorPrimary};
 `;
