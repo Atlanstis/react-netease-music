@@ -23,15 +23,16 @@ class ListSplit extends Component {
     const rowSums = Math.ceil(list.length / splitRows);
     return (
       <ListSplitWrap className="list-wrap">
-        {thunkedList.map((list, listIndex) => {
+        {thunkedList.map((rowList, listIndex) => {
           let rowHtml = (
             <div className="list">
-              {list.map((card, index) => {
+              {rowList.map((card, index) => {
                 return (
                   <CardEle
                     orderIndex={getOrder(listIndex, index, rowSums)}
                     key={card.id}
                     card={card}
+                    list={list}
                   ></CardEle>
                 );
               })}

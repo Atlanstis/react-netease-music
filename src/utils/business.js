@@ -11,3 +11,28 @@ export function genImgUrl(url, w, h) {
   url += `?param=${w}y${h}`;
   return url;
 }
+
+export function normalizedSong(song) {
+  let normalize = (song) => {
+    return {
+      id: song.id,
+      picUrl: song.picUrl,
+      name: song.name,
+      url: genSongPlayUrl(song.id),
+      durationSec: song.song.duration / 1000,
+      artists: song.song.artists.map((artist) => {
+        return {
+          id: artist.id,
+          name: artist.name,
+        };
+      }),
+    };
+  };
+  if (Array.isArray(song)) {
+    return song.map((item) => {
+      return normalize(item);
+    });
+  } else {
+    return normalize(song);
+  }
+}

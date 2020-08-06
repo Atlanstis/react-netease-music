@@ -1,5 +1,6 @@
+import { fromJS } from "immutable";
 import * as actionTypes from "./action-types";
-import { genSongPlayUrl } from "@/utils/business";
+import { normalizedSong } from "@/utils/business";
 
 export const setVolumeAction = (volume) => {
   return {
@@ -15,24 +16,14 @@ export const setPlayingStateAction = (state) => {
   };
 };
 
-export const playSongAction = (song) => {
+export const playSongAction = (song, list, type, origin) => {
   return (dispatch) => {
-    const songNomalized = {
-      id: song.id,
-      picUrl: song.picUrl,
-      name: song.name,
-      url: genSongPlayUrl(song.id),
-      durationSec: song.song.duration / 1000,
-      artists: song.song.artists.map((artist) => {
-        return {
-          id: artist.id,
-          name: artist.name,
-        };
-      }),
-    };
+    const songNomalized = fromJS(normalizedSong(song));
+    const listNomalized = fromJS(normalizedSong(list));
     dispatch(setPlayingStateAction(true));
     dispatch(setCurrentSongAction(songNomalized));
     dispatch(setPlayHistoryAction(songNomalized));
+    dispatch(setPlayListAction(listNomalized, type));
   };
 };
 
@@ -54,5 +45,13 @@ export const setCurrentTimeAction = (time) => {
   return {
     type: actionTypes.SET_CURRENT_TIME,
     time,
+  };
+};
+
+const setPlayListAction = (list, addType) => {
+  return {
+    type: actionTypes.SET_PLAY_LIST,
+    list,
+    addType,
   };
 };

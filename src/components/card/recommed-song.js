@@ -15,6 +15,7 @@ import {
 import { flexCenter, absCenter, textEllipsis, imgWrap } from "@/style/mixins";
 import styled from "styled-components";
 import { actionCreator } from "@/store/modules/music-player";
+import { PLAY_LIST_TYPE, SONG_ORIGIN } from "@/constants/song";
 
 class Song extends Component {
   constructor(props) {
@@ -23,7 +24,8 @@ class Song extends Component {
   }
 
   onSongCardClick() {
-    this.props.playSong(this.props.card);
+    const { card, list } = this.props;
+    this.props.playSong(card, list);
   }
 
   render() {
@@ -60,12 +62,24 @@ class Song extends Component {
 Song.propTypes = {
   card: PropTypes.object.isRequired,
   orderIndex: PropTypes.number.isRequired,
+  list: PropTypes.arrayOf(PropTypes.object),
+};
+
+Song.defaultProps = {
+  list: [],
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    playSong(song) {
-      dispatch(actionCreator.playSongAction(song));
+    playSong(song, list) {
+      dispatch(
+        actionCreator.playSongAction(
+          song,
+          list,
+          PLAY_LIST_TYPE.REPLACE,
+          SONG_ORIGIN.RECOMM
+        )
+      );
     },
   };
 };
