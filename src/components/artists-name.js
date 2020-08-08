@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   $fontSizeXs,
   $fontColorPrimary,
-  $fontColorTitle,
+  $textColorMajor,
 } from "@/style/variables";
 
 const keyMap = {
@@ -56,7 +56,7 @@ const ArtistSpan = styled.span`
   color: ${$fontColorPrimary};
   cursor: pointer;
   &:hover {
-    color: ${$fontColorTitle};
+    color: ${$textColorMajor};
   }
 `;
 

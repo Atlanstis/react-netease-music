@@ -5,7 +5,7 @@ import { genImgUrl } from "@/utils/business";
 import {
   $fontSizeSm,
   $cardHoverColor,
-  $fontColorTitle,
+  $textColorMajor,
   $fontSize,
 } from "@/style/variables";
 import { textEllipsis, imgWrap } from "@/style/mixins";
@@ -63,7 +63,7 @@ const CardWraper = styled.div`
     .name {
       ${textEllipsis};
       font-size: ${$fontSize};
-      color: ${$fontColorTitle};
+      color: ${$textColorMajor};
     }
 
     .dj {

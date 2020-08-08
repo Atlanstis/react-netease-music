@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "./icon";
-import { $fontSizeTitle, $fontColorTitle, $black } from "@/style/variables";
+import { $fontSizeTitle, $textColorMajor, $black } from "@/style/variables";
 
 function Title(props) {
   return (
@@ -31,10 +31,10 @@ const TitleWrapper = styled.div`
   }
   .title {
     font-size: ${$fontSizeTitle};
-    color: ${$fontColorTitle};
+    color: ${$textColorMajor};
   }
   .icon {
     padding-left: 4px;
-    color: ${$fontColorTitle};
+    color: ${$textColorMajor};
   }
 `;

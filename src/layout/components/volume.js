@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Icon from "@/components/icon";
 import { $progressBgColor, $themeColor } from "@/style/variables";
+import { boxShadow } from "@/style/mixins";
 import { connect } from "react-redux";
 import { prefixStyle } from "@/utils/dom";
 import { actionCreator } from "@/store/modules/music-player";
@@ -159,7 +160,7 @@ const VolumeBar = styled.div`
   z-index: 2000;
   border-radius: 2px;
   border: 1px solid #ebeef5;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  ${boxShadow};
 `;
 
 const VolumeArrow = styled.div`

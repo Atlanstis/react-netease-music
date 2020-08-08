@@ -8,7 +8,7 @@ import ArtistsName from "@/components/artists-name";
 import {
   $fontSizeSm,
   $cardHoverColor,
-  $fontColorTitle,
+  $textColorMajor,
   $fontSize,
   $fontColorPrimary,
 } from "@/style/variables";
@@ -129,7 +129,7 @@ const SongCard = styled.div`
     .song-name {
       ${textEllipsis};
       font-size: ${$fontSize};
-      color: ${$fontColorTitle};
+      color: ${$textColorMajor};
       .song-alias {
         color: ${$fontColorPrimary};
       }

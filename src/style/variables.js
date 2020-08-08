@@ -13,7 +13,6 @@ export const $fontWeightBold = "700";
 export const $fontColorShallow = "#6f6f6f";
 export const $fontColorGrey = "#5c5c5c";
 export const $fontColorGrey2 = "#909090";
-export const $fontColorTitle = "#333333";
 export const $fontColorPrimary = "#b2b2b2";
 export const $fontColorMenu = $black;
 export const $fontColorMenuUnactive = "#646464";
@@ -48,3 +47,15 @@ export const $menuFontColor = "#2f2f2f";
 export const $progressBgColor = "#f5f5f5";
 
 export const $borderColor = "#f2f2f2";
+
+// playlist
+export const $playlistBgColor = "#f9f9f9";
+export const $playlistZIndex = "99";
+
+export const $btnActiveColor = "#bbbbbb";
+export const $btnHoverColor = "#f0f0f0";
+
+export const $textColorMajor = "#333333";
+export const $textPrimary = "#bfbfbf";
+
+export const $splitColor = "#e5e5e5";

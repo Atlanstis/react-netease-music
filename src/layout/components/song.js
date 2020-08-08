@@ -8,7 +8,7 @@ import { genImgUrl } from "@/utils/business";
 import { imgWrap, absStretch, absCenter, textEllipsis } from "@/style/mixins";
 import {
   $fontSizeXs,
-  $fontColorTitle,
+  $textColorMajor,
   $fontColorPrimary,
 } from "@/style/variables";
 
@@ -110,7 +110,7 @@ const ContentTop = styled.div`
 
   .name {
     max-width: 140px;
-    color: ${$fontColorTitle};
+    color: ${$textColorMajor};
     cursor: pointer;
     ${textEllipsis};
   }
