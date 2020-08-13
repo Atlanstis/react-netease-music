@@ -54,7 +54,7 @@ class PlayMode extends Component {
       <Icon
         size={24}
         type={playMode}
-        iconClass="icon"
+        color="icon"
         onClick={this.onChangePlayMode}
       ></Icon>
     );

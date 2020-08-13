@@ -4,8 +4,8 @@ import styled from "styled-components";
 import {
   $themeColor,
   $white,
-  $fontColorShallow,
   $roundHoverBgcolor,
+  $iconColor,
 } from "@/style/variables";
 import { flexCenter } from "@/style/mixins";
 
@@ -126,8 +126,8 @@ const IconItem = styled.i`
     &-white {
       color: ${$white};
     }
-    &-shallow {
-      color: ${$fontColorShallow};
+    &-icon {
+      color: ${$iconColor};
     }
   }
 `;

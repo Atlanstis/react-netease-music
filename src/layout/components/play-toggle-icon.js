@@ -12,7 +12,7 @@ function PlayListIcon() {
     <Icon
       size={24}
       type="playlist"
-      color={playListShow ? "theme" : ""}
+      color={playListShow ? "theme" : "icon"}
       onClick={() => {
         dispatch(actionCreator.setPlayListShow(!playListShow));
       }}

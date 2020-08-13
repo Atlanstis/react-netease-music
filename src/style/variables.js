@@ -10,7 +10,6 @@ export const $headerHeight = "50px";
 export const $themeColor = "#D33A31";
 
 export const $fontWeightBold = "700";
-export const $fontColorShallow = "#6f6f6f";
 export const $fontColorGrey = "#5c5c5c";
 export const $fontColorGrey2 = "#909090";
 export const $fontColorPrimary = "#b2b2b2";
@@ -32,7 +31,6 @@ export const $fontSizeTitle = "18px";
 // mini-player
 export const $miniPlayerHeight = "60px";
 export const $miniPlayerZIndex = "1002";
-export const $miniPlayerIconColor = "#4c4c4c";
 
 // layout-conetent
 export const $layoutContentMinWidth = "700px";
@@ -55,3 +53,5 @@ export const $textColorMajor = "#333333";
 export const $textPrimary = "#bfbfbf";
 
 export const $splitColor = "#e5e5e5";
+
+export const $iconColor = "#4c4c4c";

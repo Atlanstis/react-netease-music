@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import Icon from "@/components/icon";
-import { $themeColor, $miniPlayerIconColor } from "@/style/variables";
+import { $themeColor, $iconColor } from "@/style/variables";
 import { flexCenter } from "@/style/mixins";
 import { actionCreator } from "@/store/modules/music-player";
 
@@ -89,7 +89,7 @@ const ControlWrapper = styled.div`
     color: ${$themeColor};
   }
   .unfavor {
-    color: ${$miniPlayerIconColor};
+    color: ${$iconColor};
   }
   .left {
     position: absolute;

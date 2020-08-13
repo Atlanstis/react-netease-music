@@ -101,7 +101,7 @@ class Volume extends Component {
         <Icon
           type={offsetHeight > 0 ? "volume-open" : "volume-mute"}
           size={24}
-          iconClass="icon"
+          color="icon"
           onClick={this.toggleVolume}
         ></Icon>
         <VolumeBar style={VolumeBarStyle}>

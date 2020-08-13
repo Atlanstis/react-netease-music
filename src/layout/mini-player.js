@@ -13,7 +13,6 @@ import {
   $miniPlayerZIndex,
   $miniPlayerHeight,
   $bodyBgColor,
-  $miniPlayerIconColor,
 } from "@/style/variables";
 
 class MiniPlayer extends Component {
@@ -83,8 +82,5 @@ const ButtonAreaWrapper = styled.div`
 
   > span {
     margin-left: 16px;
-  }
-  .icon {
-    color: ${$miniPlayerIconColor};
   }
 `;
