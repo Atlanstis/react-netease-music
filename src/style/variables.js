@@ -48,10 +48,6 @@ export const $progressBgColor = "#f5f5f5";
 
 export const $borderColor = "#f2f2f2";
 
-// playlist
-export const $playlistBgColor = "#f9f9f9";
-export const $playlistZIndex = "99";
-
 export const $btnActiveColor = "#bbbbbb";
 export const $btnHoverColor = "#f0f0f0";
 

@@ -6,6 +6,7 @@ import {
   $fontColorPrimary,
   $textColorMajor,
 } from "@/style/variables";
+import { textEllipsis } from "@/style/mixins";
 
 const keyMap = {
   dj: { nameKey: "nickname", idKey: "userId" },
@@ -18,24 +19,24 @@ function ArtistsName(props) {
 
   let length = artists.length;
   return (
-    <p className={className}>
+    <ArtistP className={className}>
       {artists.map((artist, index) => {
         if (index === length - 1) {
           return (
             <Fragment key={artist[idKey]}>
-              <ArtistSpan>{artist[nameKey]}</ArtistSpan>
+              <span className="artist">{artist[nameKey]}</span>
             </Fragment>
           );
         } else {
           return (
             <Fragment key={artist[idKey]}>
-              <ArtistSpan>{artist[nameKey]}</ArtistSpan>
-              <SplitSpan>/</SplitSpan>
+              <span className="artist">{artist[nameKey]}</span>
+              <span className="split">/</span>
             </Fragment>
           );
         }
       })}
-    </p>
+    </ArtistP>
   );
 }
 
@@ -51,17 +52,20 @@ ArtistsName.defaultProps = {
 
 export default ArtistsName;
 
-const ArtistSpan = styled.span`
-  font-size: ${$fontSizeXs};
-  color: ${$fontColorPrimary};
-  cursor: pointer;
-  &:hover {
-    color: ${$textColorMajor};
-  }
-`;
+const ArtistP = styled.p`
+  ${textEllipsis};
 
-const SplitSpan = styled.span`
-  font-size: ${$fontSizeXs};
-  margin: 0 4px;
-  color: ${$fontColorPrimary};
+  .artist {
+    font-size: ${$fontSizeXs};
+    color: ${$fontColorPrimary};
+    cursor: pointer;
+    &:hover {
+      color: ${$textColorMajor};
+    }
+  }
+  .split {
+    font-size: ${$fontSizeXs};
+    margin: 0 4px;
+    color: ${$fontColorPrimary};
+  }
 `;

@@ -20,6 +20,7 @@ export function normalizedSong(song) {
       name: song.name,
       url: genSongPlayUrl(song.id),
       durationSec: song.song.duration / 1000,
+      alias: song.song.alias,
       artists: song.song.artists.map((artist) => {
         return {
           id: artist.id,

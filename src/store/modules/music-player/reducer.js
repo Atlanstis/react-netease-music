@@ -36,9 +36,16 @@ export default (state = defaultState, action) => {
       });
     }
     case actionTypes.SET_CURRENT_SONG: {
-      storage.set(LAST_PLAY_SONG_KEY, action.song.toJS());
+      let { song, addType } = action;
+      let songNew;
+      if (addType === PLAY_LIST_TYPE.REPLACE) {
+        songNew = song;
+      } else if (addType === PLAY_LIST_TYPE.CLEAN_UP) {
+        songNew = fromJS({});
+      }
+      storage.set(LAST_PLAY_SONG_KEY, songNew.toJS());
       return state.merge({
-        currentSong: action.song,
+        currentSong: songNew,
       });
     }
     case actionTypes.SET_CURRENT_TIME: {
@@ -47,18 +54,25 @@ export default (state = defaultState, action) => {
       });
     }
     case actionTypes.SET_PLAY_HISTORY: {
-      let { song } = action;
+      let { song, addType } = action;
       let playHistoryList = state.get("playHistoryList");
-      let findIndex = playHistoryList.findIndex((value) => {
-        return value.get("id") === song.get("id");
-      });
-      if (findIndex > -1) {
-        playHistoryList.delete(findIndex);
+      if (addType === PLAY_LIST_TYPE.REPLACE) {
+        let findIndex = playHistoryList.findIndex((value) => {
+          return value.get("id") === song.get("id");
+        });
+        if (findIndex > -1) {
+          playHistoryList = playHistoryList.delete(findIndex);
+        }
+        if (playHistoryList.size >= PLAY_HISTORY_MAX_LENGTH) {
+          playHistoryList = playHistoryList.slice(
+            0,
+            PLAY_HISTORY_MAX_LENGTH - 1
+          );
+        }
+        playHistoryList = playHistoryList.unshift(song);
+      } else if (addType === PLAY_LIST_TYPE.CLEAN_UP) {
+        playHistoryList = fromJS([]);
       }
-      if (playHistoryList.size >= PLAY_HISTORY_MAX_LENGTH) {
-        playHistoryList = playHistoryList.slice(0, PLAY_HISTORY_MAX_LENGTH - 1);
-      }
-      playHistoryList = playHistoryList.unshift(song);
       storage.set(PLAY_HISTORY_KEY, playHistoryList.toJS());
       return state.merge({
         playHistoryList,
@@ -69,6 +83,8 @@ export default (state = defaultState, action) => {
       let playList;
       if (addType === PLAY_LIST_TYPE.REPLACE) {
         playList = list;
+      } else if (addType === PLAY_LIST_TYPE.CLEAN_UP) {
+        playList = fromJS([]);
       }
       storage.set(PLAY_LIST_KEY, playList.toJS());
       return state.merge({ playList });

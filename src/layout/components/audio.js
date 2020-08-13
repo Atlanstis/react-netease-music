@@ -25,6 +25,9 @@ class Audio extends Component {
       return false;
     }
     if (this.props.currentSong.get("id") !== nextProps.currentSong.get("id")) {
+      if (!nextProps.currentSong.get("id")) {
+        this.$audio.pause();
+      }
       return true;
     } else {
       nextProps.playingState ? this.$audio.play() : this.$audio.pause();

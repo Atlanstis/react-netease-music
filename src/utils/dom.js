@@ -32,3 +32,16 @@ export function prefixStyle(style) {
 
   return ret + style.charAt(0).toUpperCase() + style.substr(1);
 }
+
+export function hasParent(dom, parentDom) {
+  parentDom = Array.isArray(parentDom) ? parentDom : [parentDom];
+  while (dom) {
+    let domCopy = dom;
+    let isExist = parentDom.find((p) => p === domCopy);
+    if (isExist) {
+      return true;
+    } else {
+      dom = dom.parentNode;
+    }
+  }
+}

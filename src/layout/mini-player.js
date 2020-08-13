@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Icon from "@/components/icon";
 import {
   PLayControl,
   PlayMode,
@@ -8,6 +7,7 @@ import {
   Volume,
   Audio,
   ProgressBarWrap,
+  PlayToggleIcon,
 } from "./components";
 import {
   $miniPlayerZIndex,
@@ -32,7 +32,7 @@ class MiniPlayer extends Component {
 
   render() {
     return (
-      <MiniPlayerWrapper>
+      <MiniPlayerWrapper id="mini-player">
         {/* 左侧播放歌曲 */}
         <Song></Song>
         {/* 控制台 */}
@@ -40,11 +40,17 @@ class MiniPlayer extends Component {
         {/* 右侧按钮区 */}
         <ButtonAreaWrapper>
           {/* 播放模式 */}
-          <PlayMode></PlayMode>
+          <span>
+            <PlayMode></PlayMode>
+          </span>
           {/* 查看播放列表 */}
-          <Icon size={24} type="playlist" iconClass="icon"></Icon>
+          <span>
+            <PlayToggleIcon />
+          </span>
           {/* 音量控制条 */}
-          <Volume></Volume>
+          <span>
+            <Volume></Volume>
+          </span>
         </ButtonAreaWrapper>
         {/* 音乐播放进度条 */}
         <ProgressBarWrap onPercentClickChange={this.onPercentClickChange} />
@@ -75,8 +81,10 @@ const ButtonAreaWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
 
+  > span {
+    margin-left: 16px;
+  }
   .icon {
     color: ${$miniPlayerIconColor};
-    margin-left: 16px;
   }
 `;

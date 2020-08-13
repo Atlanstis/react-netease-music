@@ -21,23 +21,25 @@ export const playSongAction = (song, list, type, origin) => {
     const songNomalized = fromJS(normalizedSong(song));
     const listNomalized = fromJS(normalizedSong(list));
     dispatch(setPlayingStateAction(true));
-    dispatch(setCurrentSongAction(songNomalized));
-    dispatch(setPlayHistoryAction(songNomalized));
+    dispatch(setCurrentSongAction(songNomalized, type));
+    dispatch(setPlayHistoryAction(songNomalized, type));
     dispatch(setPlayListAction(listNomalized, type));
   };
 };
 
-export const setCurrentSongAction = (song) => {
+export const setCurrentSongAction = (song, addType) => {
   return {
     type: actionTypes.SET_CURRENT_SONG,
     song,
+    addType,
   };
 };
 
-const setPlayHistoryAction = (song) => {
+export const setPlayHistoryAction = (song, addType) => {
   return {
     type: actionTypes.SET_PLAY_HISTORY,
     song,
+    addType,
   };
 };
 
@@ -48,7 +50,7 @@ export const setCurrentTimeAction = (time) => {
   };
 };
 
-const setPlayListAction = (list, addType) => {
+export const setPlayListAction = (list, addType) => {
   return {
     type: actionTypes.SET_PLAY_LIST,
     list,

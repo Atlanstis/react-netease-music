@@ -5,14 +5,13 @@ import { pad } from "@/utils/common";
 import { genImgUrl } from "@/utils/business";
 import PlayIcon from "@/components/play-icon";
 import ArtistsName from "@/components/artists-name";
+import SongName from "@/components/song-name";
 import {
   $fontSizeSm,
   $cardHoverColor,
-  $textColorMajor,
-  $fontSize,
   $fontColorPrimary,
 } from "@/style/variables";
-import { flexCenter, absCenter, textEllipsis, imgWrap } from "@/style/mixins";
+import { flexCenter, absCenter, imgWrap } from "@/style/mixins";
 import styled from "styled-components";
 import { actionCreator } from "@/store/modules/music-player";
 import { PLAY_LIST_TYPE, SONG_ORIGIN } from "@/constants/song";
@@ -34,10 +33,6 @@ class Song extends Component {
       card: { song },
       orderIndex,
     } = this.props;
-    let songAlias = null;
-    if (song.alias.length) {
-      songAlias = <span className="song-alias">（{card.song.alias[0]}）</span>;
-    }
     return (
       <SongCard>
         <div className="img-wrap" onClick={this.onSongCardClick}>
@@ -48,11 +43,8 @@ class Song extends Component {
           <span>{pad(orderIndex)}</span>
         </div>
         <div className="song-content">
-          <p className="song-name">
-            {card.name}
-            {songAlias}
-          </p>
-          <ArtistsName className="singer" artists={song.artists}></ArtistsName>
+          <SongName name={card.name} alias={card.song.alias}></SongName>
+          <ArtistsName artists={song.artists}></ArtistsName>
         </div>
       </SongCard>
     );
@@ -125,18 +117,5 @@ const SongCard = styled.div`
     justify-content: space-around;
     flex: 1;
     overflow: hidden;
-
-    .song-name {
-      ${textEllipsis};
-      font-size: ${$fontSize};
-      color: ${$textColorMajor};
-      .song-alias {
-        color: ${$fontColorPrimary};
-      }
-    }
-
-    .singer {
-      ${textEllipsis};
-    }
   }
 `;
