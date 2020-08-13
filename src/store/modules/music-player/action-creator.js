@@ -57,3 +57,7 @@ export const setPlayListAction = (list, addType) => {
     addType,
   };
 };
+
+export const setPlayModeAction = () => {
+  return { type: actionTypes.SET_PLAY_MODE };
+};

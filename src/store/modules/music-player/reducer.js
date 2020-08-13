@@ -6,8 +6,11 @@ import {
   PLAY_HISTORY_KEY,
   LAST_PLAY_SONG_KEY,
   PLAY_LIST_KEY,
+  PLAY_MODE_LEY,
 } from "@/constants/storage-key";
+import { DEFAULT_PLAY_MODE } from "@/constants/song";
 import { PLAY_LIST_TYPE } from "@/constants/song";
+import { getPlayMode } from "@/utils/business";
 
 // 播放历史记录最大长度
 const PLAY_HISTORY_MAX_LENGTH = 100;
@@ -19,6 +22,8 @@ const defaultState = fromJS({
   playingState: false,
   playList: storage.get(PLAY_LIST_KEY, []),
   playHistoryList: storage.get(PLAY_HISTORY_KEY, []),
+  playMode: storage.get(PLAY_MODE_LEY, DEFAULT_PLAY_MODE),
+  hasCardiac: false, // 是否含有心动模式
 });
 
 export default (state = defaultState, action) => {
@@ -88,6 +93,20 @@ export default (state = defaultState, action) => {
       }
       storage.set(PLAY_LIST_KEY, playList.toJS());
       return state.merge({ playList });
+    }
+    case actionTypes.SET_PLAY_MODE: {
+      let playModeMap = getPlayMode(state.hasCardiac);
+      const modeKeys = Object.keys(playModeMap);
+      const currentModeIndex = modeKeys.findIndex(
+        (key) => playModeMap[key].code === state.get("playMode")
+      );
+      const nextIndex = (currentModeIndex + 1) % modeKeys.length;
+      const nextModeKey = modeKeys[nextIndex];
+      const nextMode = playModeMap[nextModeKey];
+      storage.set(PLAY_MODE_LEY, nextMode.code);
+      return state.merge({
+        playMode: nextMode.code,
+      });
     }
     default:
       return state;

@@ -1,3 +1,5 @@
+import { PLAY_MODE_MAP, PLAY_MODE_CARDIAC } from "@/constants/song";
+
 // 音乐播放地址
 export function genSongPlayUrl(id) {
   return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
@@ -36,4 +38,12 @@ export function normalizedSong(song) {
   } else {
     return normalize(song);
   }
+}
+
+export function getPlayMode(hasCardiac) {
+  let playMode = PLAY_MODE_MAP;
+  if (hasCardiac) {
+    playMode = Object.assign({}, PLAY_MODE_MAP, PLAY_MODE_CARDIAC);
+  }
+  return playMode;
 }

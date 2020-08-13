@@ -1,64 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Icon from "@/components/icon";
+import { actionCreator } from "@/store/modules/music-player";
+import { getPlayMode } from "@/utils/business";
 
-const playModeMap = {
-  cardiac: {
-    code: "cardiac",
-    icon: "cardiac",
-    name: "心动模式",
-  },
-  sequence: {
-    code: "sequence",
-    icon: "sequence",
-    name: "顺序播放",
-  },
-  loop: {
-    code: "loop",
-    icon: "loop",
-    name: "单曲循环",
-  },
-  random: {
-    code: "random",
-    icon: "random",
-    name: "随机播放",
-  },
-};
+function PlayMode() {
+  const playMode = useSelector((state) =>
+    state.getIn(["musicPlayer", "playMode"])
+  );
+  const hasCardiac = useSelector((state) =>
+    state.getIn(["musicPlayer", "hasCardiac"])
+  );
+  const dispatch = useDispatch();
 
-class PlayMode extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playMode: "cardiac",
-    };
-    this.onChangePlayMode = this.onChangePlayMode.bind(this);
-  }
+  const playModeMap = getPlayMode(hasCardiac);
 
-  onChangePlayMode() {
-    const modeKeys = Object.keys(playModeMap);
-    const currentModeIndex = modeKeys.findIndex(
-      (key) => playModeMap[key].code === this.state.playMode
-    );
-    const nextIndex = (currentModeIndex + 1) % modeKeys.length;
-    const nextModeKey = modeKeys[nextIndex];
-    const nextMode = playModeMap[nextModeKey];
-    this.setState(() => {
-      return {
-        playMode: nextMode.code,
-      };
-    });
-  }
-
-  render() {
-    const { playMode } = this.state;
-    return (
-      <Icon
-        size={24}
-        type={playMode}
-        color="icon"
-        onClick={this.onChangePlayMode}
-      ></Icon>
-    );
-  }
+  return (
+    <Icon
+      size={24}
+      type={playModeMap[playMode].icon}
+      color="icon"
+      onClick={() => {
+        dispatch(actionCreator.setPlayModeAction());
+      }}
+    ></Icon>
+  );
 }
 
 export default PlayMode;

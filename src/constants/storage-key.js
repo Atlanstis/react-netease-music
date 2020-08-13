@@ -6,3 +6,5 @@ export const PLAY_HISTORY_KEY = "__play_history__";
 export const LAST_PLAY_SONG_KEY = "__last_play_song__";
 // 播放列表
 export const PLAY_LIST_KEY = "__play_list__";
+// 播放模式
+export const PLAY_MODE_LEY = "__play_mode__";

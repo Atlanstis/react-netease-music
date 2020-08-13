@@ -11,3 +11,5 @@ export const SET_PLAY_HISTORY = `${_BASE}/SET_PLAY_HISTORY`;
 export const SET_CURRENT_TIME = `${_BASE}/SET_CURRENT_TIME`;
 // 设置播放列表
 export const SET_PLAY_LIST = `${_BASE}/SET_PLAY_LIST`;
+// 设置播放模式
+export const SET_PLAY_MODE = `${_BASE}/SET_PLAY_MODE`;
